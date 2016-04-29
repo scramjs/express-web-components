@@ -2,11 +2,11 @@
   "name": "scram-express",
   "version": "0.0.0",
   "scripts": {
-    "start": "node dev-init.js && http-server"
+    "start": "node dev-init.js && node_modules/.bin/scram-engine"
   },
   "devDependencies": {
     "@polymer/polymer": "^1.2.5-npm-test.2",
     "express": "^4.13.4",
-    "http-server": "^0.9.0"
+    "scram-engine": "git+ssh://git@github.com/scramjs/scram-markup-engine.git"
   }
 }
