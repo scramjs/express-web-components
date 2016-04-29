@@ -1,0 +1,31 @@
+<link rel="import" href="../@polymer/polymer/polymer.html">
+
+<dom-module id="express-router">
+    <script>
+        class ExpressRouterComponent {
+
+            beforeRegister() {
+                this.is = 'express-router';
+                this.properties = {
+                    path: {
+                        type: String
+                    }
+                };
+            }
+
+            ready() {
+                this.express = this.parentNode.express;
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.express.Router();
+
+                this.expressApp.use(this.path, this.router);
+            }
+
+            attached() {}
+            detached() {}
+            attributeChanged() {}
+        }
+
+        Polymer(ExpressRouterComponent);
+    </script>
+</dom-module>

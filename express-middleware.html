@@ -1,19 +1,12 @@
 <link rel="import" href="../@polymer/polymer/polymer.html">
 
 <dom-module id="express-middleware">
-    <template>
-        <div>Route hooked up for: [[method]], [[path]]</div>
-    </template>
-
     <script>
         class ExpressMiddlewareComponent {
 
             beforeRegister() {
                 this.is = 'express-middleware';
                 this.properties = {
-                    expressApp: {
-                        type: Object
-                    },
                     method: {
                         type: String
                     },
@@ -33,6 +26,7 @@
 
             ready() {
                 this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
             }
 
             attached() {}
@@ -41,30 +35,66 @@
 
             initRouteWithCallback() {
                 if (this.method) {
-                    this.expressApp[this.method.toLowerCase()](this.path, this.callback);
+                    if (this.router) {
+                        this.router[this.method.toLowerCase()](this.path, this.callback);
+                    }
+                    else {
+                        this.expressApp[this.method.toLowerCase()](this.path, this.callback);
+                    }
+
                     return;
                 }
 
                 if (this.path) {
-                    this.expressApp.use(this.path, this.callback);
+                    if (this.router) {
+                        this.router.use(this.path, this.callback);
+                    }
+                    else {
+                        this.expressApp.use(this.path, this.callback);
+                    }
+
                     return;
                 }
 
-                this.expressApp.use(this.callback);
+                if (this.router) {
+                    this.router.use(this.callback);
+                }
+                else {
+                    this.expressApp.use(this.callback);
+                }
             }
 
             initRouteWithCallbacks() {
                 if (this.method) {
-                    this.expressApp[this.method.toLowerCase()](this.path, ...this.callbacks);
+
+                    if (this.router) {
+                        this.router[this.method.toLowerCase()](this.path, ...this.callbacks);
+                    }
+                    else {
+                        this.expressApp[this.method.toLowerCase()](this.path, ...this.callbacks);
+                    }
+
                     return;
                 }
 
                 if (this.path) {
-                    this.expressApp.use(this.path, ...this.callbacks);
+
+                    if (this.router) {
+                        this.router.use(this.path, ...this.callbacks);
+                    }
+                    else {
+                        this.expressApp.use(this.path, ...this.callbacks);
+                    }
+
                     return;
                 }
 
-                this.expressApp.use(...this.callback);
+                if (this.router) {
+                    this.router.use(...this.callback);
+                }
+                else {
+                    this.expressApp.use(...this.callback);
+                }
             }
         }
 
