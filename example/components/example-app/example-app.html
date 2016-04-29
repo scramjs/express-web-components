@@ -7,6 +7,11 @@
     <template>
         <express-app port="5000">
             <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
+
+            <express-router path="/api">
+                <example-api></example-api>
+            </express-router>
+            
             <express-middleware callback="[[notFoundHandler]]"></express-middleware>
         </express-app>
     </template>
