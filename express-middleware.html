@@ -34,6 +34,7 @@
             detached() {}
             attributeChanged() {}
 
+            //TODO Can I call these methods from ready? Ready is supposed to be called after all properties are set
             initRouteWithCallback() {
                 //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
                 this.expressApp = this.parentNode.expressApp;
@@ -69,6 +70,7 @@
                 }
             }
 
+            //TODO Can I call these methods from ready? Ready is supposed to be called after all properties are set
             initRouteWithCallbacks() {
                 //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
                 this.expressApp = this.parentNode.expressApp;
