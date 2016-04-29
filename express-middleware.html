@@ -1,15 +1,15 @@
 <link rel="import" href="../@polymer/polymer/polymer.html">
 
-<dom-module id="scram-express-middleware">
+<dom-module id="express-middleware">
     <template>
         <div>Route hooked up for: [[method]], [[path]]</div>
     </template>
 
     <script>
-        class ScramExpressMiddlewareComponent {
+        class ExpressMiddlewareComponent {
 
             beforeRegister() {
-                this.is = 'scram-express-middleware';
+                this.is = 'express-middleware';
                 this.properties = {
                     expressApp: {
                         type: Object
@@ -31,40 +31,43 @@
                 };
             }
 
-            ready() {}
+            ready() {
+                this.expressApp = this.parentNode.expressApp;
+            }
+
             attached() {}
             detached() {}
             attributeChanged() {}
 
             initRouteWithCallback() {
                 if (this.method) {
-                    window.expressApp[this.method.toLowerCase()](this.path, this.callback);
+                    this.expressApp[this.method.toLowerCase()](this.path, this.callback);
                     return;
                 }
 
                 if (this.path) {
-                    window.expressApp.use(this.path, this.callback);
+                    this.expressApp.use(this.path, this.callback);
                     return;
                 }
 
-                window.expressApp.use(this.callback);
+                this.expressApp.use(this.callback);
             }
 
             initRouteWithCallbacks() {
                 if (this.method) {
-                    window.expressApp[this.method.toLowerCase()](this.path, ...this.callbacks);
+                    this.expressApp[this.method.toLowerCase()](this.path, ...this.callbacks);
                     return;
                 }
 
                 if (this.path) {
-                    window.expressApp.use(this.path, ...this.callbacks);
+                    this.expressApp.use(this.path, ...this.callbacks);
                     return;
                 }
 
-                window.expressApp.use(...this.callback);
+                this.expressApp.use(...this.callback);
             }
         }
 
-        Polymer(ScramExpressMiddlewareComponent);
+        Polymer(ExpressMiddlewareComponent);
     </script>
 </dom-module>

@@ -1,0 +1,38 @@
+<link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../node_modules/scram-express/express-app.html">
+<link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
+
+<dom-module id="example-app">
+    <template>
+        <express-app port="5000">
+            <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
+            <express-middleware callback="[[notFoundHandler]]"></express-middleware>
+        </express-app>
+    </template>
+
+    <script>
+        class ExampleAppComponent {
+            beforeRegister() {
+                this.is = 'example-app';
+                this.properties = {
+                };
+            }
+
+            ready() {
+                this.indexGetHandler = (req, res) => {
+                    res.send('Hola mundo!');
+                };
+
+                this.notFoundHandler = (req, res) => {
+                    res.send('404 not found');
+                };
+            }
+
+            attached() {}
+            detached() {}
+            attributeChanged() {}
+        }
+        Polymer(ExampleAppComponent);
+    </script>
+</dom-module>
