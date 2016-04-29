@@ -1,0 +1,35 @@
+<link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
+<link rel="import" href="../../../node_modules/scram-express/express-router.html">
+
+<dom-module id="example-api">
+    <template>
+        <express-middleware method="get" path="/monkey" callback="[[monkeyGetHandler]]"></express-middleware>
+    </template>
+
+    <script>
+        class ExampleApiComponent {
+            beforeRegister() {
+                this.is = 'example-api';
+                this.properties = {
+                };
+            }
+
+            ready() {
+                this.express = this.parentNode.express;
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
+
+                this.monkeyGetHandler = (req, res) => {
+                    res.send('I am a monkey');
+                };
+            }
+
+            attached() {}
+            detached() {}
+            attributeChanged() {}
+        }
+        Polymer(ExampleApiComponent);
+    </script>
+</dom-module>

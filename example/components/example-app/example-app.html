@@ -3,6 +3,7 @@
 <link rel="import" href="../../../node_modules/scram-express/express-app.html">
 <link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
 <link rel="import" href="../../../node_modules/scram-express/express-router.html">
+<link rel="import" href="../example-api/example-api.html">
 
 <dom-module id="example-app">
     <template>
@@ -10,7 +11,7 @@
             <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
 
             <express-router path="/api">
-                <express-middleware method="get" path="/monkey" callback="[[monkeyGetHandler]]"></express-middleware>
+                <example-api></example-api>
             </express-router>
 
             <express-middleware callback="[[notFoundHandler]]"></express-middleware>
@@ -28,10 +29,6 @@
             ready() {
                 this.indexGetHandler = (req, res) => {
                     res.send('Hola mundo!');
-                };
-
-                this.monkeyGetHandler = (req, res) => {
-                    res.send('I am a monkey');
                 };
 
                 this.notFoundHandler = (req, res) => {

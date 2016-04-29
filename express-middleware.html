@@ -25,6 +25,7 @@
             }
 
             ready() {
+                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
                 this.expressApp = this.parentNode.expressApp;
                 this.router = this.parentNode.router;
             }
@@ -34,6 +35,10 @@
             attributeChanged() {}
 
             initRouteWithCallback() {
+                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
+
                 if (this.method) {
                     if (this.router) {
                         this.router[this.method.toLowerCase()](this.path, this.callback);
@@ -65,6 +70,10 @@
             }
 
             initRouteWithCallbacks() {
+                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
+
                 if (this.method) {
 
                     if (this.router) {
