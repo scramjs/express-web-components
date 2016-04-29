@@ -3,9 +3,23 @@
 <link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
 <link rel="import" href="../../../node_modules/scram-express/express-router.html">
 
+<link rel="import" href="../monkey/example-monkey.html">
+<link rel="import" href="../lion/example-lion.html">
+<link rel="import" href="../bear/example-bear.html">
+
 <dom-module id="example-api">
     <template>
-        <express-middleware method="get" path="/monkey" callback="[[monkeyGetHandler]]"></express-middleware>
+        <express-router path="/monkey">
+            <example-monkey></example-monkey>
+        </express-router>
+
+        <express-router path="/lion">
+            <example-lion></example-lion>
+        </express-router>
+
+        <express-router path="/bear">
+            <example-bear></example-bear>
+        </express-router>
     </template>
 
     <script>
@@ -20,10 +34,6 @@
                 this.express = this.parentNode.express;
                 this.expressApp = this.parentNode.expressApp;
                 this.router = this.parentNode.router;
-
-                this.monkeyGetHandler = (req, res) => {
-                    res.send('I am a monkey');
-                };
             }
 
             attached() {}

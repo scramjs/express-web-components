@@ -1,0 +1,31 @@
+<link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
+
+<dom-module id="example-lion">
+    <template>
+    </template>
+
+    <script>
+        class ExampleLionComponent {
+            beforeRegister() {
+                this.is = 'example-lion';
+                this.properties = {
+                };
+            }
+
+            ready() {
+                this.express = this.parentNode.express;
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
+
+                console.log('example-lion');
+            }
+
+            attached() {}
+            detached() {}
+            attributeChanged() {}
+        }
+        Polymer(ExampleLionComponent);
+    </script>
+</dom-module>

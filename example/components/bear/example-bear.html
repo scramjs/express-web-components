@@ -1,0 +1,31 @@
+<link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
+
+<link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
+
+<dom-module id="example-bear">
+    <template>
+    </template>
+
+    <script>
+        class ExampleBearComponent {
+            beforeRegister() {
+                this.is = 'example-bear';
+                this.properties = {
+                };
+            }
+
+            ready() {
+                this.express = this.parentNode.express;
+                this.expressApp = this.parentNode.expressApp;
+                this.router = this.parentNode.router;
+
+                console.log('example-bear');
+            }
+
+            attached() {}
+            detached() {}
+            attributeChanged() {}
+        }
+        Polymer(ExampleBearComponent);
+    </script>
+</dom-module>
