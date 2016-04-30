@@ -9,21 +9,43 @@
                 this.properties = {
                     path: {
                         type: String
+                    },
+                    expressBundle: { //set by the parent element imperatively
+                        type: Object,
+                        observer: 'init'
                     }
                 };
             }
 
-            ready() {
-                this.express = this.parentNode.express;
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.express.Router();
-
-                this.expressApp.use(this.path, this.router);
-            }
-
+            ready() {}
             attached() {}
             detached() {}
             attributeChanged() {}
+
+            init() {
+                this.app = this.expressBundle.app;
+                this.router = this.expressBundle.router;
+
+                const express = require('express');
+                const router = express.Router();
+
+                if (this.router) {
+                    this.router.use(this.path, router);
+                }
+                else if (this.app) {
+                    this.app.use(this.path, router);
+                }
+
+                const children = Array.prototype.slice.call(this.childNodes);
+                children.forEach((child) => {
+                    if (!child.expressBundle) {
+                        child.expressBundle = {
+                            app: this.app,
+                            router: this.router || router
+                        };
+                    }
+                });
+            }
         }
 
         Polymer(ExpressRouterComponent);

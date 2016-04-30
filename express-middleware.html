@@ -14,19 +14,14 @@
                         type: String
                     },
                     callback: {
-                        type: Object,
-                        observer: 'init'
+                        type: Object
                     },
                     callbacks: {
-                        type: Array,
-                        observer: 'init'
+                        type: Array
                     },
-                    app: {
+                    expressBundle: { //set by the parent element imperatively
                         type: Object,
                         observer: 'init'
-                    },
-                    router: {
-                        type: Object
                     }
                 };
             }
@@ -37,16 +32,17 @@
             attributeChanged() {}
 
             init() {
-                if (this.app) {
-                    if (this.callback) {
-                        this.initRouteWithCallback();
-                        return;
-                    }
+                this.app = this.expressBundle.app;
+                this.router = this.expressBundle.router;
 
-                    if (this.callbacks) {
-                        this.initRouteWithCallbacks();
-                        return;
-                    }
+                if (this.callback) {
+                    this.initRouteWithCallback();
+                    return;
+                }
+
+                if (this.callbacks) {
+                    this.initRouteWithCallbacks();
+                    return;
                 }
             }
 

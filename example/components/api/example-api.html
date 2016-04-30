@@ -9,7 +9,8 @@
 
 <dom-module id="example-api">
     <template>
-        <express-router path="/monkey">
+        <express-middleware method="get" path="/monkey" callback="[[test]]"></express-middleware>
+        <!--<express-router path="/monkey">
             <example-monkey></example-monkey>
         </express-router>
 
@@ -19,7 +20,7 @@
 
         <express-router path="/bear">
             <example-bear></example-bear>
-        </express-router>
+        </express-router>-->
     </template>
 
     <script>
@@ -27,18 +28,34 @@
             beforeRegister() {
                 this.is = 'example-api';
                 this.properties = {
+                    app: { //set by the parent element imperatively
+                        type: Object,
+                        notify: 'init'
+                    },
+                    router: { //set by the parent element imperatively
+                        type: Object,
+                        notify: 'init'
+                    }
                 };
             }
 
-            ready() {
-                this.express = this.parentNode.express;
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.parentNode.router;
-            }
-
+            ready() {}
             attached() {}
             detached() {}
             attributeChanged() {}
+
+            init() {
+                console.log('example-api init');
+                const children = Array.prototype.slice.call(this.childNodes);
+                children.forEach((child) => {
+                    !child.app && (child.app = this.app);
+                    !child.router && (child.router = router);
+                });
+            }
+
+            test(req, res) {
+                res.send('test works');
+            }
         }
         Polymer(ExampleApiComponent);
     </script>

@@ -14,17 +14,18 @@
                 };
             }
 
-            ready() {
-                this.express = this.parentNode.express;
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.parentNode.router;
-
-                console.log('example-bear');
-            }
-
+            ready() {}
             attached() {}
             detached() {}
             attributeChanged() {}
+
+            init() {
+                const children = Array.prototype.slice.call(this.childNodes);
+                children.forEach((child) => {
+                    !child.app && (child.app = this.app);
+                    !child.router && (child.router = router);
+                });
+            }
         }
         Polymer(ExampleBearComponent);
     </script>

@@ -7,14 +7,25 @@
 
 <dom-module id="example-app">
     <template>
-        <express-app port="5000" app="{{expressApp}}">
-            <express-middleware method="get" path="/" callback="[[indexGetHandler]]" app="[[expressApp]]"></express-middleware>
+        <express-app port="5000">
+            <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
 
-            <!--<express-router path="/api">
-                <example-api></example-api>
-            </express-router>-->
+            <express-router path="/api">
+                <express-router path="/monkey">
+                    <express-middleware method="get" path="/" callback="[[testHandler]]"></express-middleware>
+                    <!--<example-monkey></example-monkey>-->
+                </express-router>
 
-            <express-middleware callback="[[notFoundHandler]]" app="[[expressApp]]"></express-middleware>
+                <!--<express-router path="/lion">
+                    <example-lion></example-lion>
+                </express-router>
+
+                <express-router path="/bear">
+                    <example-bear></example-bear>
+                </express-router>-->
+            </express-router>
+
+            <express-middleware callback="[[notFoundHandler]]"></express-middleware>
         </express-app>
     </template>
 
@@ -29,6 +40,10 @@
             ready() {
                 this.indexGetHandler = (req, res) => {
                     res.send('Hola mundo!');
+                };
+
+                this.testHandler = (req, res) => {
+                    res.send('test works');
                 };
 
                 this.notFoundHandler = (req, res) => {
