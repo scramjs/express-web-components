@@ -3,18 +3,18 @@
 <link rel="import" href="../../../node_modules/scram-express/express-app.html">
 <link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
 <link rel="import" href="../../../node_modules/scram-express/express-router.html">
-<link rel="import" href="../example-api/example-api.html">
+<link rel="import" href="../api/example-api.html">
 
 <dom-module id="example-app">
     <template>
-        <express-app port="5000">
-            <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
+        <express-app port="5000" app="{{expressApp}}">
+            <express-middleware method="get" path="/" callback="[[indexGetHandler]]" app="[[expressApp]]"></express-middleware>
 
-            <express-router path="/api">
+            <!--<express-router path="/api">
                 <example-api></example-api>
-            </express-router>
+            </express-router>-->
 
-            <express-middleware callback="[[notFoundHandler]]"></express-middleware>
+            <express-middleware callback="[[notFoundHandler]]" app="[[expressApp]]"></express-middleware>
         </express-app>
     </template>
 

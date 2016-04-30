@@ -9,6 +9,10 @@
                 this.properties = {
                     port: {
                         type: Number
+                    },
+                    app: {
+                        type: Object,
+                        notify: true
                     }
                 };
             }
@@ -22,8 +26,9 @@
                     console.log(`express app listening on port: ${port}`);
                 });
 
+                //TODO don't leave these here, we need to databind this.express somehow potentially
                 this.express = express;
-                this.expressApp = app;
+                this.app = app;
             }
 
             attached() {}

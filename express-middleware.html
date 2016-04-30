@@ -15,37 +15,48 @@
                     },
                     callback: {
                         type: Object,
-                        observer: 'initRouteWithCallback'
+                        observer: 'init'
                     },
                     callbacks: {
                         type: Array,
-                        observer: 'initRouteWithCallbacks'
+                        observer: 'init'
+                    },
+                    app: {
+                        type: Object,
+                        observer: 'init'
+                    },
+                    router: {
+                        type: Object
                     }
                 };
             }
 
-            ready() {
-                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.parentNode.router;
-            }
-
+            ready() {}
             attached() {}
             detached() {}
             attributeChanged() {}
 
-            //TODO Can I call these methods from ready? Ready is supposed to be called after all properties are set
-            initRouteWithCallback() {
-                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.parentNode.router;
+            init() {
+                if (this.app) {
+                    if (this.callback) {
+                        this.initRouteWithCallback();
+                        return;
+                    }
 
+                    if (this.callbacks) {
+                        this.initRouteWithCallbacks();
+                        return;
+                    }
+                }
+            }
+
+            initRouteWithCallback() {
                 if (this.method) {
                     if (this.router) {
                         this.router[this.method.toLowerCase()](this.path, this.callback);
                     }
                     else {
-                        this.expressApp[this.method.toLowerCase()](this.path, this.callback);
+                        this.app[this.method.toLowerCase()](this.path, this.callback);
                     }
 
                     return;
@@ -56,7 +67,7 @@
                         this.router.use(this.path, this.callback);
                     }
                     else {
-                        this.expressApp.use(this.path, this.callback);
+                        this.app.use(this.path, this.callback);
                     }
 
                     return;
@@ -66,15 +77,11 @@
                     this.router.use(this.callback);
                 }
                 else {
-                    this.expressApp.use(this.callback);
+                    this.app.use(this.callback);
                 }
             }
 
-            //TODO Can I call these methods from ready? Ready is supposed to be called after all properties are set
             initRouteWithCallbacks() {
-                //TODO understand lifecycle better so that these assignemnts are not repeated and are handled properly
-                this.expressApp = this.parentNode.expressApp;
-                this.router = this.parentNode.router;
 
                 if (this.method) {
 
@@ -82,7 +89,7 @@
                         this.router[this.method.toLowerCase()](this.path, ...this.callbacks);
                     }
                     else {
-                        this.expressApp[this.method.toLowerCase()](this.path, ...this.callbacks);
+                        this.app[this.method.toLowerCase()](this.path, ...this.callbacks);
                     }
 
                     return;
@@ -94,7 +101,7 @@
                         this.router.use(this.path, ...this.callbacks);
                     }
                     else {
-                        this.expressApp.use(this.path, ...this.callbacks);
+                        this.app.use(this.path, ...this.callbacks);
                     }
 
                     return;
@@ -104,7 +111,7 @@
                     this.router.use(...this.callback);
                 }
                 else {
-                    this.expressApp.use(...this.callback);
+                    this.app.use(...this.callback);
                 }
             }
         }
