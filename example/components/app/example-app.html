@@ -11,7 +11,7 @@
 <dom-module id="example-app">
     <template>
         <express-app port="5000">
-            <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
+            <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
 
             <express-router path="/api">
                 <express-router path="/monkey">
@@ -27,7 +27,21 @@
                 </express-router>
             </express-router>
 
-            <express-middleware callback="[[notFoundHandler]]"></express-middleware>
+            <express-router path="/1">
+                <express-router path="/2">
+                    <express-router path="/3">
+                        <express-router path="/4">
+                            <express-router path="/5">
+                                <express-router path="/6">
+                                    <express-middleware method="get" path="/7" callback="[[seven]]"></express-middleware>
+                                </express-router>
+                            </express-router>
+                        </express-router>
+                    </express-router>
+                </express-router>
+            </express-router>
+
+            <express-middleware callback="[[notFound]]"></express-middleware>
         </express-app>
     </template>
 
@@ -42,11 +56,15 @@
             }
 
             initHandlers() {
-                this.indexGetHandler = (req, res) => {
+                this.index = (req, res) => {
                     res.send('Hola mundo!');
                 };
 
-                this.notFoundHandler = (req, res) => {
+                this.seven = (req, res) => {
+                    res.send('Nice job, 7 levels deep');
+                };
+
+                this.notFound = (req, res) => {
                     res.send('404 not found');
                 };
             }
