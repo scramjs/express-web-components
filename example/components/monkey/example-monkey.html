@@ -4,7 +4,10 @@
 
 <dom-module id="example-monkey">
     <template>
-        <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
+        <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
+        <express-middleware method="get" path="/one" callback="[[one]]"></express-middleware>
+        <express-middleware method="get" path="/two" callback="[[two]]"></express-middleware>
+        <express-middleware method="get" path="/three" callback="[[three]]"></express-middleware>
     </template>
 
     <script>
@@ -18,8 +21,24 @@
             }
 
             ready() {
-                this.indexGetHandler = (req, res) => {
+                this.initHandlers();
+            }
+
+            initHandlers() {
+                this.index = (req, res) => {
                     res.send('monkey index');
+                };
+
+                this.one = (req, res) => {
+                    res.send('monkey one');
+                };
+
+                this.two = (req, res) => {
+                    res.send('monkey two');
+                };
+
+                this.three = (req, res) => {
+                    res.send('monkey three');
                 };
             }
         }
