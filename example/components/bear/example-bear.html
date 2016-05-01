@@ -1,6 +1,6 @@
 <link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
 
-<link rel="import" href="../../../node_modules/scram-express/express-middleware.html">
+<link rel="import" href="../../../node_modules/express-web-components/express-middleware.html">
 
 <dom-module id="example-bear">
     <template>
@@ -11,12 +11,10 @@
         class ExampleBearComponent {
             beforeRegister() {
                 this.is = 'example-bear';
-                this.properties = {
-                    expressBundle: { //set by the parent element imperatively
-                        type: Object,
-                        observer: 'init'
-                    }
-                };
+            }
+
+            get behaviors() {
+                return [ExpressParentBehavior];
             }
 
             ready() {
@@ -24,26 +22,8 @@
                     res.send('bear index');
                 };
             }
-
-            attached() {}
-            detached() {}
-            attributeChanged() {}
-
-            init() {
-                const app = this.expressBundle.app;
-                const router = this.expressBundle.router;
-
-                const children = Array.prototype.slice.call(this.childNodes);
-                children.forEach((child) => {
-                    if (!child.expressBundle) {
-                        child.expressBundle = {
-                            app: app,
-                            router: router
-                        };
-                    }
-                });
-            }
         }
+
         Polymer(ExampleBearComponent);
     </script>
 </dom-module>
