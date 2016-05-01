@@ -24,16 +24,16 @@
 
             init() {
                 this.app = this.expressBundle.app;
-                this.router = this.expressBundle.router;
+                this.parentRouter = this.expressBundle.router;
 
                 const express = require('express');
-                const router = express.Router();
+                const newRouter = express.Router();
 
-                if (this.router) {
-                    this.router.use(this.path, router);
+                if (this.parentRouter) {
+                    this.parentRouter.use(this.path, newRouter);
                 }
-                else if (this.app) {
-                    this.app.use(this.path, router);
+                else {
+                    this.app.use(this.path, newRouter);
                 }
 
                 const children = Array.prototype.slice.call(this.childNodes);
@@ -41,7 +41,7 @@
                     if (!child.expressBundle) {
                         child.expressBundle = {
                             app: this.app,
-                            router: this.router || router
+                            router: newRouter
                         };
                     }
                 });

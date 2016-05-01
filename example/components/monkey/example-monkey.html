@@ -12,6 +12,10 @@
             beforeRegister() {
                 this.is = 'example-monkey';
                 this.properties = {
+                    expressBundle: { //set by the parent element imperatively
+                        type: Object,
+                        observer: 'init'
+                    }
                 };
             }
 
@@ -26,10 +30,17 @@
             attributeChanged() {}
 
             init() {
+                const app = this.expressBundle.app;
+                const router = this.expressBundle.router;
+
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
-                    !child.app && (child.app = this.app);
-                    !child.router && (child.router = router);
+                    if (!child.expressBundle) {
+                        child.expressBundle = {
+                            app: app,
+                            router: router
+                        };
+                    }
                 });
             }
         }

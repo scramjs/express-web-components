@@ -4,6 +4,7 @@
 
 <dom-module id="example-bear">
     <template>
+        <express-middleware method="get" path="/" callback="[[indexGetHandler]]"></express-middleware>
     </template>
 
     <script>
@@ -11,19 +12,35 @@
             beforeRegister() {
                 this.is = 'example-bear';
                 this.properties = {
+                    expressBundle: { //set by the parent element imperatively
+                        type: Object,
+                        observer: 'init'
+                    }
                 };
             }
 
-            ready() {}
+            ready() {
+                this.indexGetHandler = (req, res) => {
+                    res.send('bear index');
+                };
+            }
+
             attached() {}
             detached() {}
             attributeChanged() {}
 
             init() {
+                const app = this.expressBundle.app;
+                const router = this.expressBundle.router;
+
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
-                    !child.app && (child.app = this.app);
-                    !child.router && (child.router = router);
+                    if (!child.expressBundle) {
+                        child.expressBundle = {
+                            app: app,
+                            router: router
+                        };
+                    }
                 });
             }
         }

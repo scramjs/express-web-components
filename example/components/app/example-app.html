@@ -12,17 +12,16 @@
 
             <express-router path="/api">
                 <express-router path="/monkey">
-                    <express-middleware method="get" path="/" callback="[[testHandler]]"></express-middleware>
-                    <!--<example-monkey></example-monkey>-->
+                    <example-monkey></example-monkey>
                 </express-router>
 
-                <!--<express-router path="/lion">
+                <express-router path="/lion">
                     <example-lion></example-lion>
                 </express-router>
 
                 <express-router path="/bear">
                     <example-bear></example-bear>
-                </express-router>-->
+                </express-router>
             </express-router>
 
             <express-middleware callback="[[notFoundHandler]]"></express-middleware>
@@ -40,10 +39,6 @@
             ready() {
                 this.indexGetHandler = (req, res) => {
                     res.send('Hola mundo!');
-                };
-
-                this.testHandler = (req, res) => {
-                    res.send('test works');
                 };
 
                 this.notFoundHandler = (req, res) => {
