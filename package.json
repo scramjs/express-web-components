@@ -1,5 +1,5 @@
 {
-  "name": "scram-express",
+  "name": "express-web-components",
   "version": "0.0.0",
   "scripts": {
     "start": "node dev-init.js && node_modules/.bin/scram-engine"
