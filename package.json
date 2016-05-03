@@ -1,7 +1,7 @@
 {
   "name": "express-web-components",
-  "version": "0.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Declaratively build ExpressJS applications with web components",
   "scripts": {
     "start": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html"
   },
