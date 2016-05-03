@@ -42,12 +42,12 @@ Just a preview of what you can expect server-side web component code to look lik
 ```
 
 ## Examples
-Here are some example Express apps that have been or are in the process of being rewritten with these web components:
+Here are some example Express.js apps that have been or are in the process of being rewritten with these web components:
 * https://github.com/scramjs/rest-api-express
 * https://github.com/scramjs/node-api
 
 ## Installation
-These web components are meant to be run using [ScramJS](https://github.com/scramjs/scram-engine), which provides access to the Electron runtime, and Express.js, which is one of the most popular web frameworks running on top of Node.js. You must install these dependencies into your project separately:
+These web components are meant to be run using [Scram.js](https://github.com/scramjs/scram-engine), which provides access to the Electron runtime, and Express.js, which is one of the most popular web frameworks running on top of Node.js. You must install these dependencies into your project separately:
 
 ```
 npm install --save express-web-components
@@ -55,6 +55,8 @@ npm install --save express
 npm install --save electron-prebuilt
 npm install --save scram-engine
 ```
+
+[See here](https://github.com/scramjs/scram-engine) for information on how to use these components with Scram.js.
 
 ## Usage
 Currently the best place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
