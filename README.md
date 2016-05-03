@@ -37,6 +37,7 @@ This repo contains web components built with the [Google Polymer library](https:
 
         Polymer(ExampleAppComponent);
     </script>
+</dom-module>
 ```
 
 ## Examples
