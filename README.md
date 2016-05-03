@@ -17,7 +17,7 @@ npm install --save scram-engine
 ```
 
 ## Usage
-Currently the best place to learn how to use the components is to view the [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
+Currently the best place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
 
 ### Components
 
