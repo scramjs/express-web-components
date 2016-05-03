@@ -35,3 +35,5 @@ Properties:
 #### `<express-router></express-router>`
 Properties:
 * path
+
+Node.js is a trademark of Joyent, Inc. and is used with its permission. We are not endorsed by or affiliated with Joyent.
