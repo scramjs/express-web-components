@@ -1,8 +1,8 @@
-<link rel="import" href="../../../node_modules/@polymer/polymer/polymer.html">
+<link rel="import" href="../../../../../node_modules/@polymer/polymer/polymer.html">
 
-<link rel="import" href="../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../../node_modules/express-web-components/express-middleware.html">
 
-<dom-module id="example-lion">
+<dom-module id="example-monkey">
     <template>
         <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
         <express-middleware method="get" path="/one" callback="[[one]]"></express-middleware>
@@ -11,9 +11,9 @@
     </template>
 
     <script>
-        class ExampleLionComponent {
+        class ExampleMonkeyComponent {
             beforeRegister() {
-                this.is = 'example-lion';
+                this.is = 'example-monkey';
             }
 
             get behaviors() {
@@ -26,23 +26,23 @@
 
             initHandlers() {
                 this.index = (req, res) => {
-                    res.send('lion index');
+                    res.send('monkey index');
                 };
 
                 this.one = (req, res) => {
-                    res.send('lion one');
+                    res.send('monkey one');
                 };
 
                 this.two = (req, res) => {
-                    res.send('lion two');
+                    res.send('monkey two');
                 };
 
                 this.three = (req, res) => {
-                    res.send('lion three');
+                    res.send('monkey three');
                 };
             }
         }
 
-        Polymer(ExampleLionComponent);
+        Polymer(ExampleMonkeyComponent);
     </script>
 </dom-module>
