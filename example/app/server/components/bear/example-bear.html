@@ -1,9 +1,11 @@
 <link rel="import" href="../../../../../node_modules/@polymer/polymer/polymer.html">
 
 <link rel="import" href="../../../../../node_modules/express-web-components/express-middleware.html">
+<link rel="import" href="../../../../../node_modules/express-web-components/express-config.html">
 
 <dom-module id="example-bear">
     <template>
+        <express-config callback="[[getTitle]]"></express-config>
         <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
         <express-middleware method="get" path="/one" callback="[[one]]"></express-middleware>
         <express-middleware method="get" path="/two" callback="[[two]]"></express-middleware>
@@ -39,6 +41,10 @@
 
                 this.three = (req, res) => {
                     res.send('bear three');
+                };
+
+                this.getTitle = (app) => {
+                    console.log(app.get('title'));
                 };
             }
         }

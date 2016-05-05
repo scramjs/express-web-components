@@ -7,7 +7,8 @@ var cmd = `
     mkdir -p node_modules/express-web-components &&
     ln -s ../../express-app.html node_modules/express-web-components/express-app.html &&
     ln -s ../../express-middleware.html node_modules/express-web-components/express-middleware.html &&
-    ln -s ../../express-router.html node_modules/express-web-components/express-router.html
+    ln -s ../../express-router.html node_modules/express-web-components/express-router.html &&
+    ln -s ../../express-config.html node_modules/express-web-components/express-config.html
 `;
 
 var newProcess = exec(cmd);

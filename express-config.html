@@ -1,0 +1,28 @@
+<link rel="import" href="../@polymer/polymer/polymer.html">
+
+<dom-module id="express-config">
+    <script>
+        class ExpressConfigComponent {
+
+            beforeRegister() {
+                this.is = 'express-config';
+                this.properties = {
+                    callback: {
+                        type: Object
+                    },
+                    expressBundle: { //set by the parent element imperatively
+                        type: Object,
+                        observer: 'init'
+                    }
+                };
+            }
+
+            init() {
+                const app = this.expressBundle.app;
+                this.callback(app);
+            }
+        }
+
+        Polymer(ExpressConfigComponent);
+    </script>
+</dom-module>

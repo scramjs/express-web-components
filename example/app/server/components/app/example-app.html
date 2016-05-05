@@ -3,6 +3,7 @@
 <link rel="import" href="../../../../../node_modules/express-web-components/express-app.html">
 <link rel="import" href="../../../../../node_modules/express-web-components/express-middleware.html">
 <link rel="import" href="../../../../../node_modules/express-web-components/express-router.html">
+<link rel="import" href="../../../../../node_modules/express-web-components/express-config.html">
 
 <link rel="import" href="../monkey/example-monkey.html">
 <link rel="import" href="../lion/example-lion.html">
@@ -12,6 +13,8 @@
     <template>
         <express-app port="5000">
             <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
+
+            <express-config callback="[[setTitle]]"></express-config>
 
             <express-router path="/api">
                 <express-router path="/monkey">
@@ -66,6 +69,10 @@
 
                 this.notFound = (req, res) => {
                     res.send('404 not found');
+                };
+
+                this.setTitle = (app) => {
+                    app.set('title', 'Animal API');
                 };
             }
         }
