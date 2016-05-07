@@ -11,7 +11,7 @@
 
 <dom-module id="example-app">
     <template>
-        <express-app port="[[port]]" callback="[[appListen]]" backlog="5000">
+        <express-app port="[[port]]" callback="[[appListen]]" backlog="[[backlog]]">
             <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
 
             <express-config callback="[[setTitle]]"></express-config>
@@ -60,6 +60,8 @@
                 this.appListen = () => {
                     console.log('the app is listening on port: ' + this.port);
                 };
+
+                this.backlog = 1000;
 
                 this.initHandlers();
             }

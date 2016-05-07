@@ -12,21 +12,16 @@
                         observer: 'prepareApp'
                     },
                     hostname: {
-                        type: String,
-                        observer: 'prepareApp'
+                        type: String
                     },
                     backlog: {
-                        type: Number,
-                        observer: 'prepareApp'
+                        type: Number
                     },
                     callback: {
-                        type: Object,
-                        observer: 'prepareApp'
+                        type: Object
                     }
                 };
             }
-
-            ready() {}
 
             prepareApp() {
                 const initApp = () => {
@@ -51,20 +46,39 @@
                     };
                 };
 
-                if (this.expressBundle) {
-                    this.expressBundle.server.close(() => {
-                        setTimeout(() => { //TODO I need this timeout to get Express to hook up the routes correctly, understand exactly why
+                const run = () => {
+                    const server = this.expressBundle ? this.expressBundle.server : undefined;
+
+                    const closeTCPConnection = () => {
+                        server.close(() => {
+                            setTimeout(() => { //TODO I need this timeout to get Express to hook up the routes correctly, understand exactly why
+                                initApp();
+                                this.initChildren();
+                            });
+                        });
+                    };
+
+                    if (server) {
+                        if (server.listening) {
+                            closeTCPConnection();
+                        }
+                        else {
+                            console.log(server);
+                            server.on('listening', () => {
+                                console.log('listening event fired')
+                                //closeTCPConnection();
+                            });
+                        }
+                    }
+                    else {
+                        setTimeout(() => { //this timeout allows all properties to be set in the host element
                             initApp();
                             this.initChildren();
                         });
-                    });
-                }
-                else {
-                    initApp();
-                    setTimeout(() => { //this timeout allows all variables being set in the host element to be set before calling init children
-                        this.initChildren();
-                    });
-                }
+                    }
+                };
+
+                run();
             }
 
             initChildren() {
@@ -73,10 +87,6 @@
                     child.expressBundle = this.expressBundle
                 });
             }
-
-            attached() {}
-            detached() {}
-            attributeChanged() {}
         }
 
         Polymer(ExpressAppComponent);
