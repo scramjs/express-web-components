@@ -24,7 +24,7 @@
             }
 
             prepareApp() {
-                const initApp = () => {
+                setTimeout(() => { //this timeout allows all properties to be set in the host element
                     const express = require('express');
                     const app = express();
                     const defaultCallback = () => {
@@ -32,53 +32,15 @@
                     };
                     const theCallback = this.callback || defaultCallback;
 
-                    console.log(this.port);
-                    console.log(this.hostname);
-                    console.log(this.backlog);
-                    console.log(theCallback);
-
-                    const server = app.listen(this.port, this.hostname, this.backlog, theCallback);
+                    app.listen(this.port, this.hostname, this.backlog, theCallback);
 
                     this.expressBundle = {
                         app,
-                        express,
-                        server
-                    };
-                };
-
-                const run = () => {
-                    const server = this.expressBundle ? this.expressBundle.server : undefined;
-
-                    const closeTCPConnection = () => {
-                        server.close(() => {
-                            setTimeout(() => { //TODO I need this timeout to get Express to hook up the routes correctly, understand exactly why
-                                initApp();
-                                this.initChildren();
-                            });
-                        });
+                        express
                     };
 
-                    if (server) {
-                        if (server.listening) {
-                            closeTCPConnection();
-                        }
-                        else {
-                            console.log(server);
-                            server.on('listening', () => {
-                                console.log('listening event fired')
-                                //closeTCPConnection();
-                            });
-                        }
-                    }
-                    else {
-                        setTimeout(() => { //this timeout allows all properties to be set in the host element
-                            initApp();
-                            this.initChildren();
-                        });
-                    }
-                };
-
-                run();
+                    this.initChildren();
+                });
             }
 
             initChildren() {
