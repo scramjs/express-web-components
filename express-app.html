@@ -63,12 +63,14 @@
             init: function() {
                 const app = this.expressBundle.app;
                 const router = this.expressBundle.router;
+                const route = this.expressBundle.route;
 
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
                     child.expressBundle = {
-                        app: app,
-                        router: router
+                        app,
+                        router,
+                        route
                     };
                 });
             }
