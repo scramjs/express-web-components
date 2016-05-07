@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "start": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
-    "start-dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d"
+    "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d"
   },
   "license": "MIT",
   "devDependencies": {
