@@ -1,0 +1,38 @@
+<link rel="import" href="../@polymer/polymer/polymer.html">
+
+<dom-module id="express-route">
+    <script>
+        class ExpressRouteComponent {
+
+            beforeRegister() {
+                this.is = 'express-route';
+                this.properties = {
+                    path: {
+                        type: String
+                    },
+                    expressBundle: { //set by the parent element imperatively
+                        type: Object,
+                        observer: 'init'
+                    }
+                };
+            }
+
+            init() {
+                const app = this.expressBundle.app;
+                const parentRouter = this.expressBundle.router;
+                const route = parentRouter.route(this.path);
+
+                const children = Array.prototype.slice.call(this.childNodes);
+                children.forEach((child) => {
+                    child.expressBundle = {
+                        app,
+                        router: parentRouter,
+                        route
+                    };
+                });
+            }
+        }
+
+        Polymer(ExpressRouteComponent);
+    </script>
+</dom-module>
