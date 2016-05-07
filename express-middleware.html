@@ -48,7 +48,10 @@
 
             initRouteWithCallback() {
                 if (this.method) {
-                    if (this.router) {
+                    if (this.route) {
+                        this.route[this.method.toLowerCase()](this.callback);
+                    }
+                    else if (this.router) {
                         this.router[this.method.toLowerCase()](this.path, this.callback);
                     }
                     else {
@@ -81,7 +84,10 @@
 
                 if (this.method) {
 
-                    if (this.router) {
+                    if (this.route) {
+                        this.route[this.method.toLowerCase()](...this.callbacks);
+                    }
+                    else if (this.router) {
                         this.router[this.method.toLowerCase()](this.path, ...this.callbacks);
                     }
                     else {
