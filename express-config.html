@@ -19,7 +19,8 @@
 
             init() {
                 const app = this.expressBundle.app;
-                this.callback(app);
+                const express = this.expressBundle.express;
+                this.callback(app, express);
             }
         }
 

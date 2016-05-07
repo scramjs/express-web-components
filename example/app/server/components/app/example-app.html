@@ -71,8 +71,10 @@
                     res.send('404 not found');
                 };
 
-                this.setTitle = (app) => {
+                this.setTitle = (app, express) => {
                     app.set('title', 'Animal API');
+                    express.static //available if you need it
+                    express.Router //create routes imperatively if you want to
                 };
             }
         }

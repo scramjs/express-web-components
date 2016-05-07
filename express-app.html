@@ -9,6 +9,15 @@
                 this.properties = {
                     port: {
                         type: Number
+                    },
+                    hostname: {
+                        type: String
+                    },
+                    backlog: {
+                        type: Number
+                    },
+                    callback: {
+                        type: Object
                     }
                 };
             }
@@ -17,13 +26,17 @@
                 const express = require('express');
                 const app = express();
                 const port = this.port;
-
-                app.listen(port, () => {
+                const hostname = this.hostname;
+                const backlog = this.backlog;
+                const defaultCallback = () => {
                     console.log(`express app listening on port: ${port}`);
-                });
+                };
+                const callback = this.callback || defaultCallback;
 
+                app.listen(port, hostname, backlog, callback);
                 this.expressBundle = {
-                    app
+                    app,
+                    express
                 };
             }
 
