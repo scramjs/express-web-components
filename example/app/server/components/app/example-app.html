@@ -11,7 +11,7 @@
 
 <dom-module id="example-app">
     <template>
-        <express-app port="5000">
+        <express-app port="[[port]]">
             <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
 
             <express-config callback="[[setTitle]]"></express-config>
@@ -55,6 +55,13 @@
             }
 
             ready() {
+                this.port = process.env.PORT || 5000;
+                this.port = 4000;
+
+                this.appListen = () => {
+                    console.log('the app is listening on port: ' + this.port);
+                };
+
                 this.initHandlers();
             }
 

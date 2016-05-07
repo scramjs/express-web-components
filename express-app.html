@@ -8,45 +8,74 @@
                 this.is = 'express-app';
                 this.properties = {
                     port: {
-                        type: Number
+                        type: Number,
+                        observer: 'prepareApp'
                     },
                     hostname: {
-                        type: String
+                        type: String,
+                        observer: 'prepareApp'
                     },
                     backlog: {
-                        type: Number
+                        type: Number,
+                        observer: 'prepareApp'
                     },
                     callback: {
-                        type: Object
+                        type: Object,
+                        observer: 'prepareApp'
                     }
                 };
             }
 
-            ready() {
-                const express = require('express');
-                const app = express();
-                const port = this.port;
-                const hostname = this.hostname;
-                const backlog = this.backlog;
-                const defaultCallback = () => {
-                    console.log(`express app listening on port: ${port}`);
-                };
-                const callback = this.callback || defaultCallback;
+            ready() {}
 
-                app.listen(port, hostname, backlog, callback);
-                this.expressBundle = {
-                    app,
-                    express
+            prepareApp() {
+                const initApp = () => {
+                    const express = require('express');
+                    const app = express();
+                    const defaultCallback = () => {
+                        console.log(`express app listening on port: ${this.port}`);
+                    };
+                    const theCallback = this.callback || defaultCallback;
+
+                    console.log(this.port);
+                    console.log(this.hostname);
+                    console.log(this.backlog);
+                    console.log(theCallback);
+
+                    const server = app.listen(this.port, this.hostname, this.backlog, theCallback);
+
+                    this.expressBundle = {
+                        app,
+                        express,
+                        server
+                    };
                 };
+
+                if (this.expressBundle) {
+                    this.expressBundle.server.close(() => {
+                        //TODO I need this to get Express to hook up the routes correctly, understand exactly why
+                        setTimeout(() => {
+                            initApp();
+                            this.initChildren();
+                        });
+                    });
+                }
+                else {
+                    initApp();
+                    setTimeout(() => {
+                        this.initChildren();
+                    });
+                }
             }
 
-            attached() {
+            initChildren() {
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
                     !child.expressBundle && (child.expressBundle = this.expressBundle);
                 });
             }
 
+            attached() {}
             detached() {}
             attributeChanged() {}
         }
