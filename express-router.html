@@ -38,12 +38,10 @@
 
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
-                    if (!child.expressBundle) {
-                        child.expressBundle = {
-                            app: this.app,
-                            router: newRouter
-                        };
-                    }
+                    child.expressBundle = {
+                        app: this.app,
+                        router: newRouter
+                    };
                 });
             }
         }

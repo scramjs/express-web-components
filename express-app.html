@@ -53,8 +53,7 @@
 
                 if (this.expressBundle) {
                     this.expressBundle.server.close(() => {
-                        //TODO I need this to get Express to hook up the routes correctly, understand exactly why
-                        setTimeout(() => {
+                        setTimeout(() => { //TODO I need this timeout to get Express to hook up the routes correctly, understand exactly why
                             initApp();
                             this.initChildren();
                         });
@@ -62,7 +61,7 @@
                 }
                 else {
                     initApp();
-                    setTimeout(() => {
+                    setTimeout(() => { //this timeout allows all variables being set in the host element to be set before calling init children
                         this.initChildren();
                     });
                 }
@@ -71,7 +70,7 @@
             initChildren() {
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
-                    !child.expressBundle && (child.expressBundle = this.expressBundle);
+                    child.expressBundle = this.expressBundle
                 });
             }
 
@@ -95,12 +94,10 @@
 
                 const children = Array.prototype.slice.call(this.childNodes);
                 children.forEach((child) => {
-                    if (!child.expressBundle) {
-                        child.expressBundle = {
-                            app: app,
-                            router: router
-                        };
-                    }
+                    child.expressBundle = {
+                        app: app,
+                        router: router
+                    };
                 });
             }
         };
