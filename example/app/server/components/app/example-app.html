@@ -12,7 +12,7 @@
 <dom-module id="example-app">
     <template>
         <express-app port="[[port]]" callback="[[appListen]]">
-            <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
+            <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
 
             <express-config callback="[[setTitle]]"></express-config>
 
@@ -63,17 +63,17 @@
 
                 this.initHandlers();
 
-                console.log(this.indexHandler);
+                //console.log(this.indexHandler);
             }
 
-            indexHandler(req, res) {
-                res.send('Hola mundo!');
-            }
+            // indexHandler(req, res) {
+            //     res.send('Hola mundo!');
+            // }
 
             initHandlers() {
-                // this.index = (req, res) => {
-                //     res.send('Hola mundo!');
-                // };
+                this.index = (req, res) => {
+                    res.send('Hola mundo!');
+                };
 
                 this.seven = (req, res) => {
                     res.send('Nice job, 7 levels deep');

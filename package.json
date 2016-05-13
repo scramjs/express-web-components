@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@polymer/polymer": "^1.2.5-npm-test.2",
-    "electron-prebuilt": "^0.37.8",
+    "electron-prebuilt": "^1.0.2",
     "express": "^4.13.4",
     "scram-engine": "0.0.4"
   }
