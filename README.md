@@ -28,7 +28,7 @@ Just a preview of what you can expect server-side web component code to look lik
                 this.index = (req, res) => {
                     res.send('Hola mundo!');
                 };
-                
+
                 this.notFound = (req, res) => {
                     res.status(404);
                     res.send('not found');
@@ -42,9 +42,11 @@ Just a preview of what you can expect server-side web component code to look lik
 ```
 
 ## Examples
-Here are some example Express.js apps that have been or are in the process of being rewritten with these web components:
+Here are some example Express.js apps that have been rewritten with these web components:
 * https://github.com/scramjs/rest-api-express
 * https://github.com/scramjs/node-api
+
+Here is a [live example](http://scramjs.org/), built with web components on the front-end and the back-end.
 
 ## Installation
 These web components are meant to be run using [Scram.js](https://github.com/scramjs/scram-engine), which provides access to the Electron runtime, and Express.js, which is one of the most popular web frameworks running on top of Node.js. You must install these dependencies into your project separately:
