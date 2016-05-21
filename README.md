@@ -5,10 +5,10 @@ This repo contains web components built with the [Google Polymer library](https:
 Just a preview of what you can expect server-side web component code to look like:
 
 ```
-<link rel="import" href="node_modules/@polymer/polymer/polymer.html">
-<link rel="import" href="node_modules/express-web-components/express-app.html">
-<link rel="import" href="node_modules/express-web-components/express-middleware.html">
-<link rel="import" href="node_modules/express-web-components/express-router.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/express-web-components/express-app.html">
+<link rel="import" href="bower_components/express-web-components/express-middleware.html">
+<link rel="import" href="bower_components/express-web-components/express-router.html">
 
 <dom-module id="example-app">
     <template>
