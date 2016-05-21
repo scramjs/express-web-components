@@ -52,7 +52,7 @@ Here is a [live example](http://scramjs.org/), built with web components on the 
 These web components are meant to be run using [Scram.js](https://github.com/scramjs/scram-engine), which provides access to the Electron runtime, and Express.js, which is one of the most popular web frameworks running on top of Node.js. You must install these dependencies into your project separately:
 
 ```
-npm install --save express-web-components
+bower install --save express-web-components
 npm install --save express
 npm install --save electron-prebuilt
 npm install --save scram-engine

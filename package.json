@@ -1,6 +1,6 @@
 {
   "name": "express-web-components",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Declaratively build ExpressJS applications with web components.",
   "keywords": [
     "web-components"
@@ -11,7 +11,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@polymer/polymer": "^1.2.5-npm-test.2",
     "electron-prebuilt": "^1.0.2",
     "express": "^4.13.4",
     "scram-engine": "0.0.4"

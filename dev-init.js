@@ -4,11 +4,11 @@
 
 var exec = require('child_process').exec;
 var cmd = `
-    mkdir -p node_modules/express-web-components &&
-    ln -s ../../express-app.html node_modules/express-web-components/express-app.html &&
-    ln -s ../../express-middleware.html node_modules/express-web-components/express-middleware.html &&
-    ln -s ../../express-router.html node_modules/express-web-components/express-router.html &&
-    ln -s ../../express-config.html node_modules/express-web-components/express-config.html
+    mkdir -p bower_components/express-web-components &&
+    ln -s ../../express-app.html bower_components/express-web-components/express-app.html &&
+    ln -s ../../express-middleware.html bower_components/express-web-components/express-middleware.html &&
+    ln -s ../../express-router.html bower_components/express-web-components/express-router.html &&
+    ln -s ../../express-config.html bower_components/express-web-components/express-config.html
 `;
 
 var newProcess = exec(cmd);
