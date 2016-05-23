@@ -1,7 +1,7 @@
 {
   "name": "express-web-components",
   "version": "0.1.6",
-  "description": "Declaratively build ExpressJS applications with web components.",
+  "description": "Declaratively build Express applications with web components.",
   "keywords": [
     "web-components"
   ],
