@@ -7,12 +7,14 @@
   ],
   "scripts": {
     "start": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
-    "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d"
+    "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d",
+    "dev-file": "electron node_modules/scram-engine/main.js example/app/server/index.html -d -f"
   },
   "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^1.0.2",
     "express": "^4.13.4",
-    "scram-engine": "0.0.4"
-  }
+    "scram-engine": "^0.1.5"
+  },
+  "dependencies": {}
 }
