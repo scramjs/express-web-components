@@ -14,7 +14,7 @@
   "devDependencies": {
     "electron-prebuilt": "^1.0.2",
     "express": "^4.13.4",
-    "scram-engine": "^0.1.5"
+    "scram-engine": "^0.1.7"
   },
   "dependencies": {}
 }
