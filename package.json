@@ -1,20 +1,20 @@
 {
   "name": "express-web-components",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Declaratively build Express applications with web components.",
   "keywords": [
     "web-components"
   ],
   "scripts": {
-    "start": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
-    "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d",
+    "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
+    "dev-window": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d",
     "dev-file": "electron node_modules/scram-engine/main.js example/app/server/index.html -d -f"
   },
   "license": "MIT",
   "devDependencies": {
-    "electron-prebuilt": "^1.0.2",
+    "electron-prebuilt": "^1.2.0",
     "express": "^4.13.4",
-    "scram-engine": "^0.1.7"
+    "scram-engine": "^0.2.2"
   },
   "dependencies": {}
 }
