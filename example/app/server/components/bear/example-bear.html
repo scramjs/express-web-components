@@ -13,42 +13,6 @@
     </template>
 
     <script>
-        class ExampleBearComponent {
-            beforeRegister() {
-                this.is = 'example-bear';
-            }
-
-            get behaviors() {
-                return [ExpressParentBehavior];
-            }
-
-            ready() {
-                this.initHandlers();
-            }
-
-            initHandlers() {
-                this.index = (req, res) => {
-                    res.send('bear index');
-                };
-
-                this.one = (req, res) => {
-                    res.send('bear one');
-                };
-
-                this.two = (req, res) => {
-                    res.send('bear two');
-                };
-
-                this.three = (req, res) => {
-                    res.send('bear three');
-                };
-
-                this.getTitle = (app) => {
-                    console.log('title', app.get('title'));
-                };
-            }
-        }
-
-        Polymer(ExampleBearComponent);
+        System.import('components/bear/example-bear.ts');
     </script>
 </dom-module>

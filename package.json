@@ -12,7 +12,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0",
+    "electron-prebuilt": "^1.2.1",
+    "es-no-build": "0.0.3",
     "express": "^4.13.4",
     "scram-engine": "^0.2.2"
   },
