@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/express-web-components/express-app.html">
+<link rel="import" href="../../bower_components/express-web-components/express-middleware.html">
+
+<dom-module id="express-app-test">
+    <template>
+        <express-app port="2000">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="3000">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="4000">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="5000">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="6000">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+        </express-app>
+    </template>
+
+    <script>
+        class ExpressAppTestComponent {
+            beforeRegister() {
+                this.is = 'express-app-test';
+            }
+
+            ready() {
+                const cors = require('cors');
+
+                this.corsMW = cors();
+
+                this.htmlPortHandler = (req, res) => {
+                    res.status(200).end();
+                };
+
+                this.runMocha();
+            }
+
+            runMocha() {
+                const Mocha = require('mocha');
+                const mocha = new Mocha();
+
+                mocha.addFile('test/express-app-test/mocha-loader.js');
+                mocha.run();
+            }
+        }
+
+        Polymer(ExpressAppTestComponent);
+    </script>
+</dom-module>

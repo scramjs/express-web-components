@@ -8,13 +8,18 @@
   "scripts": {
     "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
     "dev-window": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d",
-    "dev-file": "electron node_modules/scram-engine/main.js example/app/server/index.html -d -f"
+    "dev-file": "electron node_modules/scram-engine/main.js example/app/server/index.html -d -f",
+    "test": "electron node_modules/scram-engine/main.js test/index.html -d"
   },
   "license": "MIT",
   "devDependencies": {
+    "axios": "^0.12.0",
+    "chai": "^3.5.0",
+    "cors": "^2.7.1",
     "electron-prebuilt": "^1.2.1",
     "es-no-build": "0.0.3",
     "express": "^4.13.4",
+    "mocha": "^2.5.3",
     "scram-engine": "^0.2.2"
   },
   "dependencies": {}
