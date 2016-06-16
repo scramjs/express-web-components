@@ -24,11 +24,31 @@ describe('express-app tests', function() {
                 baseURL: 'http://localhost:2000'
             }).get('/');
 
+            const response7000 = await axios.create({
+                baseURL: 'http://localhost:7000'
+            }).get('/');
+
+            const response8000 = await axios.create({
+                baseURL: 'http://localhost:8000'
+            }).get('/');
+
+            const response9000 = await axios.create({
+                baseURL: 'http://localhost:9000'
+            }).get('/');
+
+            const response10000 = await axios.create({
+                baseURL: 'http://localhost:10000'
+            }).get('/');
+
             assert.equal(response2000.status, 200);
             assert.equal(response3000.status, 200);
             assert.equal(response4000.status, 200);
             assert.equal(response5000.status, 200);
             assert.equal(response6000.status, 200);
+            assert.equal(response7000.status, 200);
+            assert.equal(response8000.status, 200);
+            assert.equal(response9000.status, 200);
+            assert.equal(response10000.status, 200);
 
             done();
         });

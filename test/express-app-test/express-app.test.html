@@ -7,27 +7,47 @@
     <template>
         <express-app port="2000">
             <express-middleware callback="[[corsMW]]"></express-middleware>
-            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
 
         <express-app port="3000">
             <express-middleware callback="[[corsMW]]"></express-middleware>
-            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
 
         <express-app port="4000">
             <express-middleware callback="[[corsMW]]"></express-middleware>
-            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
 
         <express-app port="5000">
             <express-middleware callback="[[corsMW]]"></express-middleware>
-            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
 
         <express-app port="6000">
             <express-middleware callback="[[corsMW]]"></express-middleware>
-            <express-middleware callback="[[htmlPortHandler]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="[[port7000]]">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="[[port8000]]">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="[[port9000]]">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
+        </express-app>
+
+        <express-app port="[[port10000]]">
+            <express-middleware callback="[[corsMW]]"></express-middleware>
+            <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
     </template>
 
@@ -42,7 +62,12 @@
 
                 this.corsMW = cors();
 
-                this.htmlPortHandler = (req, res) => {
+                this.port7000 = 7000;
+                this.port8000 = 8000;
+                this.port9000 = 9000;
+                this.port10000 = 10000;
+
+                this.portHandler = (req, res) => {
                     res.status(200).end();
                 };
 
