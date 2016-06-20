@@ -52,6 +52,8 @@
 
         <express-app port="5100" hostname="localhost"></express-app>
         <express-app port="5200" hostname="[[hostname]]"></express-app>
+
+        <express-app port="5300" callback="[[callbackTest]]"></express-app>
     </template>
 
     <script>
@@ -71,6 +73,10 @@
                 this.port10000 = 10000;
 
                 this.hostname = 'localhost';
+
+                this.callbackTest = () => {
+                    window.callbackTestWorked = true;
+                };
 
                 this.portHandler = (req, res) => {
                     res.status(200).end();

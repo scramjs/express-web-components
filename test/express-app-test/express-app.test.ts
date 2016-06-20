@@ -58,4 +58,10 @@ describe('express-app tests', function() {
         it('should not throw an error when the hostname is passed in as a string literal to the HTML attribute', function() {});
         it('should not throw an error when the hostname is passed in through data binding', function() {});
     });
+
+    describe('Bind a function to <express-app>`s callback property and the function runs after the app is initialized', function() {
+        it('should set callbackTestWorked to true', function() {
+            assert.equal(window.callbackTestWorked, true);
+        });
+    });
 });
