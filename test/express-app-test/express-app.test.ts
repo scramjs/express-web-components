@@ -53,4 +53,9 @@ describe('express-app tests', function() {
             done();
         });
     });
+
+    describe('The hostname is set', function() {
+        it('should not throw an error when the hostname is passed in as a string literal to the HTML attribute', function() {});
+        it('should not throw an error when the hostname is passed in through data binding', function() {});
+    });
 });

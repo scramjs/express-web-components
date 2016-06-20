@@ -49,6 +49,9 @@
             <express-middleware callback="[[corsMW]]"></express-middleware>
             <express-middleware callback="[[portHandler]]"></express-middleware>
         </express-app>
+
+        <express-app port="5100" hostname="localhost"></express-app>
+        <express-app port="5200" hostname="[[hostname]]"></express-app>
     </template>
 
     <script>
@@ -66,6 +69,8 @@
                 this.port8000 = 8000;
                 this.port9000 = 9000;
                 this.port10000 = 10000;
+
+                this.hostname = 'localhost';
 
                 this.portHandler = (req, res) => {
                     res.status(200).end();
