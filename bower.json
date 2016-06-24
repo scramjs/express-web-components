@@ -1,6 +1,6 @@
 {
   "name": "express-web-components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Declaratively build Express applications with web components.",
   "main": "",
   "authors": [
