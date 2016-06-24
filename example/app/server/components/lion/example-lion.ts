@@ -8,10 +8,6 @@ class ExampleLionComponent {
         this.is = 'example-lion';
     }
 
-    get behaviors() {
-        return [ExpressParentBehavior];
-    }
-
     ready() {
         this.initHandlers();
     }

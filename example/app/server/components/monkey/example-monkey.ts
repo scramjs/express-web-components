@@ -8,10 +8,6 @@ class ExampleMonkeyComponent {
         this.is = 'example-monkey';
     }
 
-    get behaviors() {
-        return [ExpressParentBehavior];
-    }
-
     ready() {
         this.initHandlers();
     }

@@ -18,10 +18,6 @@
                     },
                     callbacks: {
                         type: Array
-                    },
-                    expressBundle: { //set by the parent element imperatively
-                        type: Object,
-                        observer: 'init'
                     }
                 };
             }
@@ -31,11 +27,11 @@
             detached() {}
             attributeChanged() {}
 
-            init() {
-                this.app = this.expressBundle.app;
-                this.router = this.expressBundle.router;
-                this.route = this.expressBundle.route;
-
+            init(app, express, router, route) {
+                this.app = app;
+                this.router = router;
+                this.route = route;
+                
                 if (this.callback) {
                     this.initRouteWithCallback();
                     return;

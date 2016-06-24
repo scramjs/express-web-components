@@ -9,10 +9,6 @@ class ExampleBearComponent {
         this.is = 'example-bear';
     }
 
-    get behaviors() {
-        return [ExpressParentBehavior];
-    }
-
     ready() {
         this.initHandlers();
     }

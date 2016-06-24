@@ -29,7 +29,7 @@ class ExampleAppComponent {
             res.send('Nice job, 7 levels deep');
         };
 
-        this.notFound = (req, res) => {
+        this.notFoundHandler = (req, res) => {
             res.send('404 not found');
         };
 

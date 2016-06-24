@@ -9,17 +9,11 @@
                 this.properties = {
                     callback: {
                         type: Object
-                    },
-                    expressBundle: { //set by the parent element imperatively
-                        type: Object,
-                        observer: 'init'
                     }
                 };
             }
 
-            init() {
-                const app = this.expressBundle.app;
-                const express = this.expressBundle.express;
+            init(app, express, router, route) {
                 this.callback(app, express);
             }
         }
