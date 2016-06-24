@@ -14,9 +14,8 @@
             }
 
             init(app, express, router, route) {
-                const app = app;
                 const parentRouter = router;
-                const route = parentRouter.route(this.path);
+                const newRoute = parentRouter.route(this.path);
 
                 const children = Array.from(this.children);
                 children.forEach((child) => {
@@ -39,7 +38,7 @@
                     }
                     //TODO this code is repeated exactly in express-app.html and express-router.html
 
-                    child.init(app, express, parentRouter, route);
+                    child.init(app, express, parentRouter, newRoute);
                 });
             }
         }
