@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../../bower_components/express-web-components/express-app.html">
+<link rel="import" href="../../bower_components/express-web-components/express-config.html">
 <link rel="import" href="../../bower_components/express-web-components/express-middleware.html">
 
 <dom-module id="express-app-test">
@@ -54,6 +55,16 @@
         <express-app port="5200" hostname="[[hostname]]"></express-app>
 
         <express-app port="5300" callback="[[callbackTest]]"></express-app>
+
+        <express-app port="5400">
+            <express-config callback="[[initChildren1]]"></express-config>
+        </express-app>
+
+        <express-app port="5500">
+            <express-config callback="[[initChildren2]]"></express-config>
+            <express-config callback="[[initChildren3]]"></express-config>
+            <express-config callback="[[initChildren4]]"></express-config>
+        </express-app>
     </template>
 
     <script>
@@ -80,6 +91,22 @@
 
                 this.portHandler = (req, res) => {
                     res.status(200).end();
+                };
+
+                this.initChildren1 = () => {
+                    window.initChildren1 = true;
+                };
+
+                this.initChildren2 = () => {
+                    window.initChildren2 = true;
+                };
+
+                this.initChildren3 = () => {
+                    window.initChildren3 = true;
+                };
+
+                this.initChildren4 = () => {
+                    window.initChildren4 = true;
                 };
 
                 this.runMocha();

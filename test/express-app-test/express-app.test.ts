@@ -64,4 +64,16 @@ describe('express-app tests', function() {
             assert.equal(window.callbackTestWorked, true);
         });
     });
+
+    describe('initializes children', function() {
+        it('should initialize 1 child', function() {
+            assert.equal(window.initChildren1, true);
+        });
+
+        it('should initialize multiple children', function() {
+            assert.equal(window.initChildren2, true);
+            assert.equal(window.initChildren3, true);
+            assert.equal(window.initChildren4, true);
+        });
+    });
 });

@@ -9,7 +9,7 @@
     "dev": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html",
     "dev-window": "node dev-init.js && electron node_modules/scram-engine/main.js example/app/server/index.html -d",
     "dev-file": "electron node_modules/scram-engine/main.js example/app/server/index.html -d -f",
-    "test": "electron node_modules/scram-engine/main.js test/index.html -d"
+    "test": "electron node_modules/scram-engine/main.js test/index.html -d -p 5052"
   },
   "license": "MIT",
   "devDependencies": {
