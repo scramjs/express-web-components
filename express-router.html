@@ -18,24 +18,23 @@
             detached() {}
             attributeChanged() {}
 
-            init(app, newExpress, router, route) {
-                this.app = app;
-                this.router = router;
-
-                const express = require('express');
+            init(app, express, router, route) {
+                const parentRouter = router;
                 const newRouter = express.Router();
 
-                if (this.parentRouter) {
-                    this.parentRouter.use(this.path, newRouter);
+                if (parentRouter) {
+                    parentRouter.use(this.path, newRouter);
                 }
                 else {
-                    this.app.use(this.path, newRouter);
+                    app.use(this.path, newRouter);
                 }
 
                 const children = Array.from(this.children);
                 children.forEach((child) => {
+
+                    //TODO this code is repeated exactly in express-app.html and express-route.html
                     if (!child.init) {
-                        const init = (app, express, router, route) => {
+                        const init = function(app, express, router, route) {
 
                             const children = Array.from(this.children);
                             children.forEach((child) => {
@@ -49,8 +48,9 @@
 
                         child.init = init;
                     }
+                    //TODO this code is repeated exactly in express-app.html and express-route.html
 
-                    child.init(this.app, express, newRouter, route);
+                    child.init(app, express, newRouter, route);
                 });
             }
         }
