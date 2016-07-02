@@ -64,8 +64,17 @@ npm install --save scram-engine
 Currently the best place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
 
 ### Components
+```
+<express-app></express-app>
 
-#### `<express-app></express-app>`
+Creates an Express application and calls the Express app.listen function. This component is the parent of all other components that you inted to be a part of the Express application created. As long as you use different ports, you can have multiple Express applications running for each instance of `<express-app></express-app>`.
+
+Properties:
+
+port: string | number
+
+
+```
 Properties:
 * port
 
