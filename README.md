@@ -78,16 +78,16 @@ you can have multiple Express applications running for each instance of `<expres
 
 `port: string | number`
 
-The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen).
 
 `hostname?: string`
 
-An optional hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+An optional hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen).
 
 
 `backlog?: number`
 
-An optional backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen), and for more info see [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
+An optional backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen), and for more info see [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback).
 
 `callback?: (e: NodeListeningEvent) => any`
 
@@ -123,7 +123,7 @@ The callback function to be invoked on a matching request.
 
 `callbacks?: (req: express.Request, res: express.Response, next: express.NextFunction) => any[]`
 
-A list of callback functions to be invoked on a matching request.
+An optional list of callback functions to be invoked on a matching request.
 
 ## `<express-router></express-router>`
 
