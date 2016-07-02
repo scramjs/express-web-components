@@ -61,7 +61,7 @@ npm install --save scram-engine
 [See here](https://github.com/scramjs/scram-engine) for information on how to use these components with Scram.js.
 
 ## Usage
-Currently the best place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
+In addition to the documentation below, a great place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
 
 ### Components
 
@@ -78,18 +78,18 @@ you can have multiple Express applications running for each instance of `<expres
 
 The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
-`hostname: string`
+`hostname?: string`
 
-The hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+An optional hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 
-`backlog: number`
+`backlog?: number`
 
-The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
+An optional backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen), and for more info see [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
 
-`callback: Function`
+`callback?: Function`
 
-A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+An optional callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 #### `<express-config></express-config>`
 
@@ -108,9 +108,20 @@ Allows hooking up Express middleware, i.e. performs the equivalent of [app.use](
 ##### Properties
 
 `method: string`
+
+An HTTP method to associate the middleware with, as defined by the Express [app.METHOD](http://expressjs.com/en/4x/api.html#app.METHOD).
+
 `path: string`
+
+The URL path that the middleware will be associated with.
+
 `callback: (req: express.Request, res: express.Response, next: express.NextFunction) => any`
+
+The callback function to be invoked on a matching request.
+
 `callbacks: (req: express.Request, res: express.Response, next: express.NextFunction) => any[]`
+
+A list of callback functions to be invoked on a matching request.
 
 #### `<express-router></express-router>`
 
@@ -120,6 +131,8 @@ Creates an Express [router](http://expressjs.com/en/4x/api.html#router). All chi
 
 `path: string`
 
+The URL path that the router will be associated with.
+
 #### `<express-route></express-route>`
 
 Creates an Express [route](http://expressjs.com/en/4x/api.html#router.route). All child components are hooked up to this route.
@@ -127,5 +140,7 @@ Creates an Express [route](http://expressjs.com/en/4x/api.html#router.route). Al
 ##### Properties
 
 `path: string`
+
+The URL path that the route will be associated with.
 
 Node.js is a trademark of Joyent, Inc. and is used with its permission. We are not endorsed by or affiliated with Joyent.
