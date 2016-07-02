@@ -64,19 +64,24 @@ npm install --save scram-engine
 Currently the best place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
 
 ### Components
-```
-<express-app></express-app>
 
-Creates an Express application and calls the Express app.listen function. This component is the parent of all other components that you inted to be a part of the Express application created. As long as you use different ports, you can have multiple Express applications running for each instance of `<express-app></express-app>`.
+#### `<express-app></express-app>`
 
-Properties:
+Creates an Express application and calls the Express app.listen function.
+This component is the parent of all other components that you inted 
+to be a part of the Express application created. As long as you use different ports,
+you can have multiple Express applications running for each instance of `<express-app></express-app>`.
 
-port: string | number
+####Properties
+
+`port: string | number` The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+
+`hostname: string` The hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 
-```
-Properties:
-* port
+`backlog: number` The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
+
+`callback: () => any` A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 #### `<express-middleware></express-middleware>`
 Properties:
