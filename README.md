@@ -65,7 +65,7 @@ In addition to the documentation below, a great place to learn how to use the co
 
 ### Components
 
-#### `<express-app></express-app>`
+## `<express-app></express-app>`
 
 Creates an Express application and calls the Express [app.listen](http://expressjs.com/en/4x/api.html#app.listen) function.
 This component is the parent of all other components that you inted 
@@ -91,7 +91,7 @@ An optional backlog the Express application will use, as specified by [app.liste
 
 An optional callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
-#### `<express-config></express-config>`
+## `<express-config></express-config>`
 
 Allows specifying a callback function to be invoked with the current pertinent objects of the parent Express application. This is useful for setting configurations, such as calling `express.static(root, [options])`.
 
@@ -101,7 +101,7 @@ Allows specifying a callback function to be invoked with the current pertinent o
 
 A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
 
-#### `<express-middleware></express-middleware>`
+## `<express-middleware></express-middleware>`
 
 Allows hooking up Express middleware, i.e. performs the equivalent of [app.use](http://expressjs.com/en/4x/api.html#app.use), [app.get](http://expressjs.com/en/4x/api.html#app.get.method), [app.post](http://expressjs.com/en/4x/api.html#app.post.method), etc.
 
@@ -123,7 +123,7 @@ The callback function to be invoked on a matching request.
 
 A list of callback functions to be invoked on a matching request.
 
-#### `<express-router></express-router>`
+## `<express-router></express-router>`
 
 Creates an Express [router](http://expressjs.com/en/4x/api.html#router). All child components are hooked up to this router.
 
@@ -133,7 +133,7 @@ Creates an Express [router](http://expressjs.com/en/4x/api.html#router). All chi
 
 The URL path that the router will be associated with.
 
-#### `<express-route></express-route>`
+## `<express-route></express-route>`
 
 Creates an Express [route](http://expressjs.com/en/4x/api.html#router.route). All child components are hooked up to this route.
 
