@@ -67,21 +67,25 @@ Currently the best place to learn how to use the components is to view this repo
 
 #### `<express-app></express-app>`
 
-Creates an Express application and calls the Express app.listen function.
+Creates an Express application and calls the Express [app.listen](http://expressjs.com/en/4x/api.html#app.listen) function.
 This component is the parent of all other components that you inted 
 to be a part of the Express application created. As long as you use different ports,
 you can have multiple Express applications running for each instance of `<express-app></express-app>`.
 
 ##### Properties
 
-`port: string | number` The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+`port: string | number`
+The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
-`hostname: string` The hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+`hostname: string`
+The hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 
-`backlog: number` The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
+`backlog: number`
+The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
 
-`callback: Function` A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+`callback: Function`
+A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 #### `<express-config></express-config>`
 
@@ -89,17 +93,34 @@ Allows specifying a callback function to be invoked with the current pertinent o
 
 ##### Properties
 
-`callback: (app: express.Application, express: Express, router: express.Router, route: express.IRoute) =>` A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
+`callback: (app: express.Application, express: Express, router: express.Router, route: express.IRoute) => void`
+A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
 
 #### `<express-middleware></express-middleware>`
-Properties:
-* method
-* path
-* callback
-* callbacks
+
+Allows hooking up Express middleware, i.e. performs the equivalent of [app.use](http://expressjs.com/en/4x/api.html#app.use), [app.get](http://expressjs.com/en/4x/api.html#app.get.method), [app.post](http://expressjs.com/en/4x/api.html#app.post.method), etc.
+
+##### Properties
+
+`method: string`
+`path: string`
+`callback: (req: express.Request, res: express.Response, next: express.NextFunction) => any`
+`callbacks: (req: express.Request, res: express.Response, next: express.NextFunction) => any[]`
 
 #### `<express-router></express-router>`
-Properties:
-* path
+
+Creates an [Express router](http://expressjs.com/en/4x/api.html#router). All child components are hooked up to this router.
+
+##### Properties
+
+`path: string`
+
+#### `<express-route></express-route>`
+
+Creates an [Express route](http://expressjs.com/en/4x/api.html#router.route). All child components are hooked up to this route.
+
+##### Properties
+
+`path: string`
 
 Node.js is a trademark of Joyent, Inc. and is used with its permission. We are not endorsed by or affiliated with Joyent.
