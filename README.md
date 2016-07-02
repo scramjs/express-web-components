@@ -63,6 +63,8 @@ npm install --save scram-engine
 ## Usage
 In addition to the documentation below, a great place to learn how to use the components is to view this repo's [example](https://github.com/scramjs/express-web-components/tree/master/example/app/server).
 
+Also, in the documentation I'm attempting to describe the API using TypeScript types. Not all of the types I'm using are real TypeScript types, I'm just hoping it helps describe what is expected. You do not need to use TypeScript to use these components.
+
 ### Components
 
 ## `<express-app></express-app>`
@@ -87,7 +89,7 @@ An optional hostname the Express application will run on, as specified by [app.l
 
 An optional backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen), and for more info see [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
 
-`callback?: Function`
+`callback?: (e: NodeListeningEvent) => any`
 
 An optional callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
@@ -97,7 +99,7 @@ Allows specifying a callback function to be invoked with the current pertinent o
 
 ##### Properties
 
-`callback: (app: express.Application, express: Express, router: express.Router, route: express.IRoute) => void`
+`callback: (app: express.Application, express: Express, router: express.Router, route: express.Route) => any`
 
 A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
 
@@ -107,19 +109,19 @@ Allows hooking up Express middleware, i.e. performs the equivalent of [app.use](
 
 ##### Properties
 
-`method: string`
+`method?: string`
 
-An HTTP method to associate the middleware with, as defined by the Express [app.METHOD](http://expressjs.com/en/4x/api.html#app.METHOD).
+An optional HTTP method to associate the middleware with, as defined by the Express [app.METHOD](http://expressjs.com/en/4x/api.html#app.METHOD). You must specify a path if you specify a method.
 
-`path: string`
+`path?: string`
 
-The URL path that the middleware will be associated with.
+The optional URL path that the middleware will be associated with. The path will default to `/` if no method is specified. You must specify a path if you specify a method.
 
 `callback: (req: express.Request, res: express.Response, next: express.NextFunction) => any`
 
 The callback function to be invoked on a matching request.
 
-`callbacks: (req: express.Request, res: express.Response, next: express.NextFunction) => any[]`
+`callbacks?: (req: express.Request, res: express.Response, next: express.NextFunction) => any[]`
 
 A list of callback functions to be invoked on a matching request.
 
@@ -129,9 +131,9 @@ Creates an Express [router](http://expressjs.com/en/4x/api.html#router). All chi
 
 ##### Properties
 
-`path: string`
+`path?: string`
 
-The URL path that the router will be associated with.
+The optional URL path that the router will be associated with. Defaults to `/`.
 
 ## `<express-route></express-route>`
 
