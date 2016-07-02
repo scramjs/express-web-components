@@ -72,7 +72,7 @@ This component is the parent of all other components that you inted
 to be a part of the Express application created. As long as you use different ports,
 you can have multiple Express applications running for each instance of `<express-app></express-app>`.
 
-####Properties
+##### Properties
 
 `port: string | number` The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
@@ -81,7 +81,15 @@ you can have multiple Express applications running for each instance of `<expres
 
 `backlog: number` The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
 
-`callback: () => any` A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+`callback: Function` A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
+
+#### `<express-config></express-config>`
+
+Allows specifying a callback function to be invoked with the current pertinent objects of the parent Express application. This is useful for setting configurations, such as calling `express.static(root, [options])`.
+
+##### Properties
+
+`callback: (app: express.Application, express: Express, router: express.Router, route: express.IRoute) =>` A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
 
 #### `<express-middleware></express-middleware>`
 Properties:
