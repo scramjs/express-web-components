@@ -75,16 +75,20 @@ you can have multiple Express applications running for each instance of `<expres
 ##### Properties
 
 `port: string | number`
+
 The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 `hostname: string`
+
 The hostname the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 
 `backlog: number`
+
 The backlog the Express application will use, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen) and [server.listen](https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback)
 
 `callback: Function`
+
 A callback function to be invoked by app.listen, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen)
 
 #### `<express-config></express-config>`
@@ -94,6 +98,7 @@ Allows specifying a callback function to be invoked with the current pertinent o
 ##### Properties
 
 `callback: (app: express.Application, express: Express, router: express.Router, route: express.IRoute) => void`
+
 A callback function that will be invoked with the the current Express application, the current Express object (from `require('express')`), the current parent router, and the current parent route.
 
 #### `<express-middleware></express-middleware>`
@@ -109,7 +114,7 @@ Allows hooking up Express middleware, i.e. performs the equivalent of [app.use](
 
 #### `<express-router></express-router>`
 
-Creates an [Express router](http://expressjs.com/en/4x/api.html#router). All child components are hooked up to this router.
+Creates an Express [router](http://expressjs.com/en/4x/api.html#router). All child components are hooked up to this router.
 
 ##### Properties
 
@@ -117,7 +122,7 @@ Creates an [Express router](http://expressjs.com/en/4x/api.html#router). All chi
 
 #### `<express-route></express-route>`
 
-Creates an [Express route](http://expressjs.com/en/4x/api.html#router.route). All child components are hooked up to this route.
+Creates an Express [route](http://expressjs.com/en/4x/api.html#router.route). All child components are hooked up to this route.
 
 ##### Properties
 
