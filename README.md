@@ -45,6 +45,7 @@ Just a preview of what you can expect server-side web component code to look lik
 Here are some example Express.js apps that have been rewritten with these web components:
 * https://github.com/scramjs/rest-api-express
 * https://github.com/scramjs/node-api
+* https://github.com/scramjs/node-todo
 
 Here is a [live example](http://scramjs.org/), built with web components on the front-end and the back-end.
 
