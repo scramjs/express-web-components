@@ -47,6 +47,7 @@ Here are some example Express.js apps that have been rewritten with these web co
 * https://github.com/scramjs/node-api
 * https://github.com/scramjs/node-todo
 * https://github.com/scramjs/node-tutorial-2-restful-app
+* https://github.com/scramjs/node-tutorial-for-frontend-devs
 
 Here is a [live example](http://scramjs.org/), built with web components on the front-end and the back-end.
 
