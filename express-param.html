@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="express-param">
+    <script>
+        class ExpressParamComponent {
+            beforeRegister() {
+                this.is = 'express-param';
+                this.properties = {
+                    name: {
+                        type: String
+                    },
+                    callback: {
+                        type: Object
+                    }
+                };
+            }
+
+            init(app, express, router, route) {
+                const parent = getParent(app, router);
+                parent.param(this.name, this.callback);
+
+                if (router) {
+                    prepareWithRouter(router);
+                }
+                else {
+                    prepareWithApp(app);
+                }
+
+                function prepareWithRouter(router) {
+
+                    if (!this.name) {
+                        console.log('using router.param() without specifying a name is deprecated as of Express v4.11.0');
+                    }
+
+                    if (Array.isArray(this.name)) {
+                        throw 'ExpressParamError: router.param() does not accept an array of route parameters';
+                    }
+
+                    router.param(this.name, this.callback);
+                }
+
+                function prepareWithApp(app) {
+                    app.param(this.name, this.callback);
+                }
+            }
+        }
+
+        Polymer(ExpressParamComponent);
+    </script>
+</dom-module>

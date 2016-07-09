@@ -47,7 +47,7 @@
                 if (this.method) {
 
                     if (!this.path) {
-                        throw 'MiddlewareError: specifying a method requires specifying a path';
+                        throw 'ExpressMiddlewareError: specifying a method requires specifying a path';
                     }
 
                     if (this.route) {
