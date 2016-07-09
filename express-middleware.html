@@ -45,6 +45,11 @@
 
             initRouteWithCallback() {
                 if (this.method) {
+
+                    if (!this.path) {
+                        throw 'MiddlewareError: specifying a method requires specifying a path';
+                    }
+
                     if (this.route) {
                         this.route[this.method.toLowerCase()](this.callback);
                     }
