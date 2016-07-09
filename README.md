@@ -76,12 +76,17 @@ Creates an Express application and calls the Express [app.listen](http://express
 This component is the parent of all other components that you inted 
 to be a part of the Express application created. As long as you use different ports,
 you can have multiple Express applications running for each instance of `<express-app></express-app>`.
+You can also nest `<express-app></express-app>` elements to create sub-apps.
 
 ##### Properties
 
 `port: string | number`
 
 The port the Express application will run on, as specified by [app.listen](http://expressjs.com/en/4x/api.html#app.listen).
+
+`path?: string`
+
+The path that this application instance will be mounted at on the parent app, used when creating a sub-app.
 
 `hostname?: string`
 
@@ -147,5 +152,19 @@ Creates an Express [route](http://expressjs.com/en/4x/api.html#router.route). Al
 `path: string`
 
 The URL path that the route will be associated with.
+
+## `<express-param></express-param>`
+
+Equivalent to [app.param()](http://expressjs.com/en/4x/api.html#app.param) or [router.param()](http://expressjs.com/en/4x/api.html#router.param), depending on its immediate parent element.
+
+##### Properties
+
+`name: string`
+
+The name of the parameter that the callback will be triggered for.
+
+`callback: (req: express.Request, res: express.Response, next: express.NextFunction, value: string, name: string): => any`
+
+The callback triggered on the corresponding route parameter. The parameters to the callback are the request object, the response object, the next middleware, the value of the route parameter, and the name of the route parameter.
 
 Node.js is a trademark of Joyent, Inc. and is used with its permission. We are not endorsed by or affiliated with Joyent.
