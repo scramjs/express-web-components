@@ -30,6 +30,22 @@
                 </express-router>
             </express-router>
 
+            <express-app path="/subapp">
+                <express-router path="/api">
+                    <express-router path="/monkey">
+                        <example-monkey></example-monkey>
+                    </express-router>
+
+                    <express-router path="/lion">
+                        <example-lion></example-lion>
+                    </express-router>
+
+                    <express-router path="/bear">
+                        <example-bear></example-bear>
+                    </express-router>
+                </express-router>
+            </express-app>
+
             <express-router path="/1">
                 <express-router path="/2">
                     <express-router path="/3">
