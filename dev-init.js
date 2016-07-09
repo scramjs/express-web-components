@@ -8,7 +8,8 @@ var cmd = `
     ln -s ../../express-app.html bower_components/express-web-components/express-app.html &&
     ln -s ../../express-middleware.html bower_components/express-web-components/express-middleware.html &&
     ln -s ../../express-router.html bower_components/express-web-components/express-router.html &&
-    ln -s ../../express-config.html bower_components/express-web-components/express-config.html
+    ln -s ../../express-config.html bower_components/express-web-components/express-config.html &&
+    ln -s ../../express-param.html bower_components/express-web-components/express-param.html
 `;
 
 var newProcess = exec(cmd);

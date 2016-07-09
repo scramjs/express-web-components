@@ -29,6 +29,15 @@ class ExampleAppComponent {
             res.send('Nice job, 7 levels deep');
         };
 
+        this.numberParam = (req, res, next, number) => {
+            console.log(number);
+            next();
+        };
+
+        this.numberCallback = (req, res) => {
+            res.send('You entered this number: ' + req.params.number);
+        };
+
         this.notFoundHandler = (req, res) => {
             res.send('404 not found');
         };

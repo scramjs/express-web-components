@@ -4,6 +4,7 @@
 <link rel="import" href="../../../../../bower_components/express-web-components/express-middleware.html">
 <link rel="import" href="../../../../../bower_components/express-web-components/express-router.html">
 <link rel="import" href="../../../../../bower_components/express-web-components/express-config.html">
+<link rel="import" href="../../../../../bower_components/express-web-components/express-param.html">
 
 <link rel="import" href="../monkey/example-monkey.html">
 <link rel="import" href="../lion/example-lion.html">
@@ -12,6 +13,7 @@
 <dom-module id="example-app">
     <template>
         <express-app port="[[port]]" callback="[[appListen]]">
+
             <express-middleware method="get" path="/" callback="[[index]]"></express-middleware>
 
             <express-config callback="[[setTitle]]"></express-config>
@@ -59,6 +61,9 @@
                     </express-router>
                 </express-router>
             </express-router>
+
+            <express-param name="number" callback="[[numberParam]]"></express-param>
+            <express-middleware method="get" path="/:number" callback="[[numberCallback]]"></express-middleware>
 
             <express-middleware callback="[[notFoundHandler]]"></express-middleware>
         </express-app>

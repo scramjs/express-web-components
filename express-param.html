@@ -16,31 +16,28 @@
             }
 
             init(app, express, router, route) {
-                const parent = getParent(app, router);
-                parent.param(this.name, this.callback);
-
                 if (router) {
-                    prepareWithRouter(router);
+                    prepareWithRouter(this, router);
                 }
                 else {
-                    prepareWithApp(app);
+                    prepareWithApp(this, app);
                 }
 
-                function prepareWithRouter(router) {
+                function prepareWithRouter(context, router) {
 
-                    if (!this.name) {
+                    if (!context.name) {
                         console.log('using router.param() without specifying a name is deprecated as of Express v4.11.0');
                     }
 
-                    if (Array.isArray(this.name)) {
+                    if (Array.isArray(context.name)) {
                         throw 'ExpressParamError: router.param() does not accept an array of route parameters';
                     }
 
-                    router.param(this.name, this.callback);
+                    router.param(context.name, context.callback);
                 }
 
-                function prepareWithApp(app) {
-                    app.param(this.name, this.callback);
+                function prepareWithApp(context, app) {
+                    app.param(context.name, context.callback);
                 }
             }
         }
