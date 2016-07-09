@@ -34,6 +34,7 @@ class ExampleAppComponent {
             next();
         };
 
+        this.number = ['number', 'name'];
         this.numberCallback = (req, res) => {
             res.send('You entered this number: ' + req.params.number);
         };

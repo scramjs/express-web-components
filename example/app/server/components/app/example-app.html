@@ -62,7 +62,7 @@
                 </express-router>
             </express-router>
 
-            <express-param name="number" callback="[[numberParam]]"></express-param>
+            <express-param name="[[number]]" callback="[[numberParam]]"></express-param>
             <express-middleware method="get" path="/:number" callback="[[numberCallback]]"></express-middleware>
 
             <express-middleware callback="[[notFoundHandler]]"></express-middleware>
