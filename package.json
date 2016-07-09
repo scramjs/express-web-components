@@ -20,7 +20,7 @@
     "es-no-build": "^0.1.0",
     "express": "^4.13.4",
     "mocha": "^2.5.3",
-    "scram-engine": "^0.2.3"
+    "scram-engine": "^0.3.1"
   },
   "dependencies": {}
 }
