@@ -57,7 +57,6 @@ These web components are meant to be run using [Scram.js](https://github.com/scr
 ```
 bower install --save express-web-components
 npm install --save express
-npm install --save electron-prebuilt
 npm install --save scram-engine
 ```
 
