@@ -13,6 +13,7 @@ With boilerplate removed, and using Polymer 2, this is a preview of what you can
 <script>
     class ExampleApp extends Polymer.Element {
         static get is() { return 'example-app'; }
+        constructor() { super(); }
 
         indexHandler(req, res) {
             res.send('Hola mundo!');
