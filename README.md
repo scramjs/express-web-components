@@ -4,7 +4,7 @@ This repo contains web components built with the [Google Polymer library](https:
 ## Mini Application
 With boilerplate removed, and using Polymer 2, this is a preview of what you can expect server-side web component code to look like:
 
-```
+```HTML
 <express-app port="5000">
     <express-middleware method="get" path="/" callback="[[indexHandler]]"></express-middleware>
     <express-middleware callback="[[notFoundHandler]]"></express-middleware>
@@ -39,7 +39,7 @@ Here is a [live example](http://scramjs.org/), built with web components on the 
 ## Installation
 These web components are meant to be run using [Scram.js](https://github.com/scramjs/scram-engine), which provides access to the Electron runtime, and Express.js, which is one of the most popular web frameworks running on top of Node.js. You must install these dependencies into your project separately:
 
-```
+```bash
 bower install --save express-web-components
 npm install --save express
 npm install --save scram-engine
