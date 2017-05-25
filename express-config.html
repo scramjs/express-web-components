@@ -1,23 +1,18 @@
-<link rel="import" href="../polymer/polymer.html">
-
-<dom-module id="express-config">
-    <script>
-        class ExpressConfigComponent {
-
-            beforeRegister() {
-                this.is = 'express-config';
-                this.properties = {
-                    callback: {
-                        type: Object
-                    }
-                };
-            }
-
-            init(app, express, router, route) {
-                this.callback(app, express);
-            }
+<script>
+    class ExpressConfigComponent {
+        beforeRegister() {
+            this.is = 'express-config';
+            this.properties = {
+                callback: {
+                    type: Object
+                }
+            };
         }
 
-        Polymer(ExpressConfigComponent);
-    </script>
-</dom-module>
+        init(app, express, router, route) {
+            this.callback(app, express);
+        }
+    }
+
+    Polymer(ExpressConfigComponent);
+</script>
