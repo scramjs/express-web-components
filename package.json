@@ -16,5 +16,7 @@
     "express": "^4.14.0",
     "mocha": "^2.5.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
