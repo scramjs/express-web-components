@@ -12,6 +12,26 @@
             this.route = null;
         }
 
+        static get observedAttributes() {
+            return [
+                'method',
+                'path'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'method': {
+                    this.method = newValue;
+                    break;
+                }
+                case 'path': {
+                    this.path = newValue;
+                    break;
+                }
+            }
+        }
+
         init(app, express, router, route) {
             this.app = app;
             this.router = router;

@@ -6,6 +6,21 @@
             this.path = null;
         }
 
+        static get observedAttributes() {
+            return [
+                'path'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'path': {
+                    this.path = newValue;
+                    break;
+                }
+            }
+        }
+
         init(app, express, router, route) {
             const parent = getParent(app, router);
             const newRoute = parent.route(this.path);

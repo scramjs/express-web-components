@@ -7,6 +7,21 @@
             this.callback = null;
         }
 
+        static get observedAttributes() {
+            return [
+                'name'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'name': {
+                    this.name = newValue;
+                    break;
+                }
+            }
+        }
+
         init(app, express, router, route) {
             if (router) {
                 prepareWithRouter(this, router);
