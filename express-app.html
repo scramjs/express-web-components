@@ -85,29 +85,18 @@
         }
 
         initChildren() {
-            const children = Array.from(this.children);
-            children.forEach((child) => {
+            const _expressInitChildren = (element, app, express, router, route) => {
+                const children = Array.from(element.children);
+                children.forEach((child) => {
+                    if (child.expressReadyCallback) {
+                        child.expressReadyCallback(app, express, router, route);
+                    }
 
-                //TODO this code is repeated exactly in express-router.html and express-route.html
-                if (!child.init) {
-                    const init = function(app, express, router, route) {
-
-                        const children = Array.from(this.children);
-                        children.forEach((child) => {
-                            if (!child.init) {
-                                child.init = init;
-                            }
-
-                            child.init(app, express, router, route);
-                        });
-                    };
-
-                    child.init = init;
-                }
-                //TODO this code is repeated exactly in express-router.html and express-route.html
-
-                child.init(this.app, this.express);
-            });
+                    child._expressInitChildren = _expressInitChildren;
+                    child._expressInitChildren(child, app, express, router, route);
+                });
+            };
+            _expressInitChildren(this, this.app, this.express, null, null);
         }
     }
 

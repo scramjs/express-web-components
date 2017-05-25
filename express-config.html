@@ -6,7 +6,7 @@
             this.callback = null;
         }
 
-        init(app, express, router, route) {
+        expressReadyCallback(app, express, router, route) {
             this.callback(app, express);
         }
     }
