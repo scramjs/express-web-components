@@ -1,60 +1,47 @@
-<link rel="import" href="../polymer/polymer.html">
+<script>
+    class ExpressRouter extends HTMLElement {
+        constructor() {
+            super();
 
-<dom-module id="express-router">
-    <script>
-        class ExpressRouterComponent {
-
-            beforeRegister() {
-                this.is = 'express-router';
-                this.properties = {
-                    path: {
-                        type: String
-                    }
-                };
-            }
-
-            ready() {}
-            attached() {}
-            detached() {}
-            attributeChanged() {}
-
-            init(app, express, router, route) {
-                const parentRouter = router;
-                const newRouter = express.Router();
-
-                if (parentRouter) {
-                    parentRouter.use(this.path, newRouter);
-                }
-                else {
-                    app.use(this.path, newRouter);
-                }
-
-                const children = Array.from(this.children);
-                children.forEach((child) => {
-
-                    //TODO this code is repeated exactly in express-app.html and express-route.html
-                    if (!child.init) {
-                        const init = function(app, express, router, route) {
-
-                            const children = Array.from(this.children);
-                            children.forEach((child) => {
-                                if (!child.init) {
-                                    child.init = init;
-                                }
-
-                                child.init(app, express, router, route);
-                            });
-                        };
-
-                        child.init = init;
-                    }
-                    //TODO this code is repeated exactly in express-app.html and express-route.html
-
-                    child.init(app, express, newRouter, route);
-                });
-            }
+            this.path = null;
         }
 
-        Polymer(ExpressRouterComponent);
-    </script>
-</dom-module>
+        init(app, express, router, route) {
+            const parentRouter = router;
+            const newRouter = express.Router();
+
+            if (parentRouter) {
+                parentRouter.use(this.path, newRouter);
+            }
+            else {
+                app.use(this.path, newRouter);
+            }
+
+            const children = Array.from(this.children);
+            children.forEach((child) => {
+
+                //TODO this code is repeated exactly in express-app.html and express-route.html
+                if (!child.init) {
+                    const init = function(app, express, router, route) {
+
+                        const children = Array.from(this.children);
+                        children.forEach((child) => {
+                            if (!child.init) {
+                                child.init = init;
+                            }
+
+                            child.init(app, express, router, route);
+                        });
+                    };
+
+                    child.init = init;
+                }
+                //TODO this code is repeated exactly in express-app.html and express-route.html
+
+                child.init(app, express, newRouter, route);
+            });
+        }
+    }
+
+    window.customElements('express-router', ExpressRouter);
+</script>

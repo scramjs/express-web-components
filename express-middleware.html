@@ -1,125 +1,109 @@
-<link rel="import" href="../polymer/polymer.html">
+<script>
+    class ExpressMiddleware extends HTMLElement {
+        constructor() {
+            super();
 
-<dom-module id="express-middleware">
-    <script>
-        class ExpressMiddlewareComponent {
+            this.method = null;
+            this.path = null;
+            this.callback = null;
+            this.callbacks = null;
+            this.app = null;
+            this.router = null;
+            this.route = null;
+        }
 
-            beforeRegister() {
-                this.is = 'express-middleware';
-                this.properties = {
-                    method: {
-                        type: String
-                    },
-                    path: {
-                        type: String
-                    },
-                    callback: {
-                        type: Object
-                    },
-                    callbacks: {
-                        type: Array
-                    }
-                };
+        init(app, express, router, route) {
+            this.app = app;
+            this.router = router;
+            this.route = route;
+
+            if (this.callback) {
+                this.initRouteWithCallback();
+                return;
             }
 
-            ready() {}
-            attached() {}
-            detached() {}
-            attributeChanged() {}
-
-            init(app, express, router, route) {
-                this.app = app;
-                this.router = router;
-                this.route = route;
-
-                if (this.callback) {
-                    this.initRouteWithCallback();
-                    return;
-                }
-
-                if (this.callbacks) {
-                    this.initRouteWithCallbacks();
-                    return;
-                }
-            }
-
-            initRouteWithCallback() {
-                if (this.method) {
-
-                    if (!this.path) {
-                        throw 'ExpressMiddlewareError: specifying a method requires specifying a path';
-                    }
-
-                    if (this.route) {
-                        this.route[this.method.toLowerCase()](this.callback);
-                    }
-                    else if (this.router) {
-                        this.router[this.method.toLowerCase()](this.path, this.callback);
-                    }
-                    else {
-                        this.app[this.method.toLowerCase()](this.path, this.callback);
-                    }
-
-                    return;
-                }
-
-                if (this.path) {
-                    if (this.router) {
-                        this.router.use(this.path, this.callback);
-                    }
-                    else {
-                        this.app.use(this.path, this.callback);
-                    }
-
-                    return;
-                }
-
-                if (this.router) {
-                    this.router.use(this.callback);
-                }
-                else {
-                    this.app.use(this.callback);
-                }
-            }
-
-            initRouteWithCallbacks() {
-
-                if (this.method) {
-
-                    if (this.route) {
-                        this.route[this.method.toLowerCase()](...this.callbacks);
-                    }
-                    else if (this.router) {
-                        this.router[this.method.toLowerCase()](this.path, ...this.callbacks);
-                    }
-                    else {
-                        this.app[this.method.toLowerCase()](this.path, ...this.callbacks);
-                    }
-
-                    return;
-                }
-
-                if (this.path) {
-
-                    if (this.router) {
-                        this.router.use(this.path, ...this.callbacks);
-                    }
-                    else {
-                        this.app.use(this.path, ...this.callbacks);
-                    }
-
-                    return;
-                }
-
-                if (this.router) {
-                    this.router.use(...this.callback);
-                }
-                else {
-                    this.app.use(...this.callback);
-                }
+            if (this.callbacks) {
+                this.initRouteWithCallbacks();
+                return;
             }
         }
 
-        Polymer(ExpressMiddlewareComponent);
-    </script>
-</dom-module>
+        initRouteWithCallback() {
+            if (this.method) {
+
+                if (!this.path) {
+                    throw 'ExpressMiddlewareError: specifying a method requires specifying a path';
+                }
+
+                if (this.route) {
+                    this.route[this.method.toLowerCase()](this.callback);
+                }
+                else if (this.router) {
+                    this.router[this.method.toLowerCase()](this.path, this.callback);
+                }
+                else {
+                    this.app[this.method.toLowerCase()](this.path, this.callback);
+                }
+
+                return;
+            }
+
+            if (this.path) {
+                if (this.router) {
+                    this.router.use(this.path, this.callback);
+                }
+                else {
+                    this.app.use(this.path, this.callback);
+                }
+
+                return;
+            }
+
+            if (this.router) {
+                this.router.use(this.callback);
+            }
+            else {
+                this.app.use(this.callback);
+            }
+        }
+
+        initRouteWithCallbacks() {
+
+            if (this.method) {
+
+                if (this.route) {
+                    this.route[this.method.toLowerCase()](...this.callbacks);
+                }
+                else if (this.router) {
+                    this.router[this.method.toLowerCase()](this.path, ...this.callbacks);
+                }
+                else {
+                    this.app[this.method.toLowerCase()](this.path, ...this.callbacks);
+                }
+
+                return;
+            }
+
+            if (this.path) {
+
+                if (this.router) {
+                    this.router.use(this.path, ...this.callbacks);
+                }
+                else {
+                    this.app.use(this.path, ...this.callbacks);
+                }
+
+                return;
+            }
+
+            if (this.router) {
+                this.router.use(...this.callback);
+            }
+            else {
+                this.app.use(...this.callback);
+            }
+        }
+    }
+
+    window.customElements.define('express-middleware', ExpressMiddleware);
+</script>

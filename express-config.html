@@ -1,12 +1,9 @@
 <script>
-    class ExpressConfigComponent {
-        beforeRegister() {
-            this.is = 'express-config';
-            this.properties = {
-                callback: {
-                    type: Object
-                }
-            };
+    class ExpressConfig extends HTMLElement {
+        constructor() {
+            super();
+
+            this.callback = null;
         }
 
         init(app, express, router, route) {
@@ -14,5 +11,5 @@
         }
     }
 
-    Polymer(ExpressConfigComponent);
+    window.customElements.define('express-config', ExpressConfig);
 </script>

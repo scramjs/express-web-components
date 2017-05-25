@@ -1,14 +1,12 @@
 <script>
-    class ExpressAppComponent extends HTMLElement {
-
+    class ExpressApp extends HTMLElement {
         constructor() {
             super();
 
             this._port = null;
-            this._path = null;
-            this._hostname = null;
-            this._backlog = null;
-            this._callback = null;
+            this.path = null;
+            this.hostname = null;
+            this.backlog = null;
         }
 
         static get observedAttributes() {
@@ -46,20 +44,8 @@
             this.listen();
         }
 
-        set path(val) {
-            this._path = val;
-        }
-
-        set hostname(val) {
-            this._hostname = val;
-        }
-
-        set backlog(val) {
-            this._backlog = val;
-        }
-
-        set callback(val) {
-            this._callback = val;
+        get port() {
+            return this._port;
         }
 
         connectedCallback() {
@@ -81,15 +67,15 @@
                 };
                 const theCallback = this._callback || defaultCallback;
 
-                this.app.listen(this._port, this._hostname, this._backlog, theCallback);
+                this.app.listen(this._port, this.hostname, this.backlog, theCallback);
 
                 this.initChildren();
             });
         }
 
         init(app, express, router, route) {
-            if (this._path) {
-                app.use(this._path, this.app);
+            if (this.path) {
+                app.use(this.path, this.app);
             }
             else {
                 app.use(this.app);
