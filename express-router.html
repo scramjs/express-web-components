@@ -25,6 +25,8 @@
             const parentRouter = router;
             const newRouter = express.Router();
 
+            this.router = newRouter;
+
             if (parentRouter) {
                 parentRouter.use(this.path, newRouter);
             }

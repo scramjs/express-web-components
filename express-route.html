@@ -25,6 +25,8 @@
             const parent = getParent(app, router);
             const newRoute = parent.route(this.path);
 
+            this.route = newRoute;
+
             function getParent(app, router) {
                 if (router) {
                     return router;

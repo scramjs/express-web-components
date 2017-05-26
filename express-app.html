@@ -73,7 +73,8 @@
             });
         }
 
-        init(app, express, router, route) {
+        //TODO I am not sure why this method is here...if it has no useful purpose then remove it
+        expressReadyCallback(app, express, router, route) {
             if (this.path) {
                 app.use(this.path, this.app);
             }
@@ -86,14 +87,14 @@
 
         initChildren() {
             const _expressInitChildren = (element, app, express, router, route) => {
-                const children = Array.from(element.children);
+                const children = Array.from(element.shadowRoot ? element.shadowRoot.children : element.children);
                 children.forEach((child) => {
                     if (child.expressReadyCallback) {
                         child.expressReadyCallback(app, express, router, route);
                     }
 
                     child._expressInitChildren = _expressInitChildren;
-                    child._expressInitChildren(child, app, express, router, route);
+                    child._expressInitChildren(child, app, express, router ? router : child.router, route ? route : child.route);
                 });
             };
             _expressInitChildren(this, this.app, this.express, null, null);
