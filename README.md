@@ -57,7 +57,7 @@ Also, in the documentation I'm attempting to describe the API using TypeScript t
 ## `<express-app></express-app>`
 
 Creates an Express application and calls the Express [app.listen](http://expressjs.com/en/4x/api.html#app.listen) function.
-This component is the parent of all other components that you inted 
+This component is the parent of all other components that you intend 
 to be a part of the Express application created. As long as you use different ports,
 you can have multiple Express applications running for each instance of `<express-app></express-app>`.
 You can also nest `<express-app></express-app>` elements to create sub-apps.
